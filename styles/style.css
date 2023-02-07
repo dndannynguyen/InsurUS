@@ -1,1 +1,21 @@
-
+.navbar_link {
+    color: rgb(27, 42, 68);
+    text-decoration: none;
+}
+.navbar_link:hover {
+    text-decoration: underline;
+}
+.company_name {
+    font-size: larger;
+}
+nav {
+    background-color: rgb(224, 246, 252);
+    height: 50px;
+}
+.top_nav {
+    display: flex;
+    justify-content: space-between;
+}
+#about_us {
+    padding-right: 1rem;
+}
