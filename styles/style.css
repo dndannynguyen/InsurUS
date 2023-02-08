@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .navbar_link {
     color: rgb(27, 42, 68);
     text-decoration: none;
@@ -6,16 +9,34 @@
     text-decoration: underline;
 }
 .company_name {
-    font-size: larger;
+    font-size: 25px;
 }
 nav {
     background-color: rgb(224, 246, 252);
     height: 50px;
-}
-.top_nav {
     display: flex;
-    justify-content: space-between;
+    align-items: center !important;
+}
+.right_float {
+    display: flex;
+    justify-content: space-between !important;
+    width: 50%;
 }
 #about_us {
     padding-right: 1rem;
+}
+main {
+    margin: auto;
+    padding: 1rem;
+    width: 85%;
+}
+.btn-primary {
+    background-color: #1B2A44 !important;
+    border: none;
+}
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(27, 42, 68, 0.5);
+}
+.jumbotron {
+    text-align: center;
 }
