@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: Inter, Arial, Helvetica, sans-serif;
 }
 .navbar_link {
     color: rgb(27, 42, 68);
@@ -23,7 +24,9 @@ nav {
 .right_float {
     display: flex;
     justify-content: space-between !important;
+    align-items: flex-end !important;
     width: 50%;
+    height: 40px;
 }
 #about_us {
     padding-right: 1rem;
