@@ -13,9 +13,12 @@
 }
 nav {
     background-color: rgb(224, 246, 252);
-    height: 50px;
+    height: 75px;
     display: flex;
     align-items: center !important;
+}
+#nav_logo {
+    border-radius: 3px;
 }
 .right_float {
     display: flex;
