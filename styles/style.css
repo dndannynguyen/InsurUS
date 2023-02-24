@@ -31,6 +31,9 @@ nav {
 #about_us {
     padding-right: 1rem;
 }
+.navbar {
+    justify-content: space-evenly !important;
+}
 main {
     margin: auto;
     padding: 1rem;
