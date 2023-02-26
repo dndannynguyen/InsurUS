@@ -2,37 +2,15 @@
     box-sizing: border-box;
     font-family: Inter, Arial, Helvetica, sans-serif;
 }
-.navbar_link {
-    color: rgb(27, 42, 68);
-    text-decoration: none;
-}
-.navbar_link:hover {
-    text-decoration: underline;
-}
-.company_name {
-    font-size: 25px;
-}
-nav {
-    background-color: rgb(224, 246, 252);
-    height: 75px;
-    display: flex;
-    align-items: center !important;
-}
 #nav_logo {
     border-radius: 3px;
 }
-.right_float {
-    display: flex;
-    justify-content: space-between !important;
-    align-items: flex-end !important;
-    width: 50%;
-    height: 40px;
+.bg-primary {
+    background-color: #E0F6FC !important;
 }
-#about_us {
-    padding-right: 1rem;
-}
-.navbar {
-    justify-content: space-evenly !important;
+
+.bg-secondary {
+    background-color: #9BD7E7 !important;
 }
 main {
     margin: auto;
@@ -51,7 +29,6 @@ main {
 }
 
 .footer_div {
-    background-color: #9BD7E7;
     text-align: center;
     color: black;
     text-decoration: none;
