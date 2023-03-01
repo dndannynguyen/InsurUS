@@ -62,3 +62,7 @@ main {
     display: flex;
     justify-content: space-between;
 }
+.search_add_group {
+    display: flex;
+    justify-content: space-between;
+}
