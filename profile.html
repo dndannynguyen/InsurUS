@@ -39,17 +39,27 @@
     <nav id="navbarPlaceholder"></nav>
     <main>
         <h1>Your Profile</h1>
-        <form>
-            <label for="name">Name</label>
-            <input type="text" id="names-goes-here">
-            <br>
-            <label for="policy">Insurance Policy Number</label>
-            <input type="text" id="policy">
-            <br>
-            <label for="licence">Driver's Licence Number</label>
-            <input type="text" id="licence">
-        </form>
+        <p>Name: <span id="name-goes-here"></span></p>
+        <p>Driver's Licence Number: <span id="driverLicence">#driver_licence_number0000</span></p>
+        
+        <h3>Provider's Details</h3>
+        <p>Provider: <span id="provider">#Company 0001</span></p>
+        <p>Policy Number: <span id="policyNum">#Policy 0010</span></p>
+        
+        <p><button><a href="#">Add Provider</a></button></p>
+        <p><button><a href="#">Change Provider</a></button></p>
+        
+
+        <h3>Records</h3>
+        <p><span id="countItems">3</span> items added</p>
+        <p>Last update <span id="lastUpdate">3 days ago</span></p>
+        <p><button><a href="../records.html">View Records Details</a></button></p>
+
+        <h3>Claims Submitted</h3>
+        <p><button><a href="#">View Claims History</a></button></p>
     </main>
+    
+        
 
     <footer id="footerPlaceholder"></footer>
 
