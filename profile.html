@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Adding A Record</title>
+    <title>Profile</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -38,18 +38,28 @@
 
     <nav id="navbarPlaceholder"></nav>
     <main>
-        <h1>Fill out the fields below!</h1>
-        <form>
-            <label for="productType">Product Type</label>
-            <input type="text" id="productType">
-            <br>
-            <label for="brand">Brand or Manufacturer</label>
-            <input type="text" id="brand">
-            <br>
-            <label for="cost">Cost or Price to Replace</label>
-            <input type="text" id="cost">
-        </form>
+        <h1>Your Profile</h1>
+        <p><b>Name: </b><span id="name-goes-here"></span></p>
+        <p><b>Driver's Licence Number: </b><span id="driverLicence">#driver_licence_number0000</span></p>
+        
+        <h3> Provider's Details</h3>
+        <p><b>Provider: </b><span id="provider">#Company 0001</span></p>
+        <p><b>Policy Number: </b><span id="policyNum">#Policy 0010</span></p>
+        
+        <p><button><a href="#">Add Provider</a></button></p>
+        <p><button><a href="#">Change Provider</a></button></p>
+        
+
+        <h3>Records</h3>
+        <p><span id="countItems">3</span> items added</p>
+        <p>Last update <span id="lastUpdate">3 days ago</span></p>
+        <p><button><a href="../records.html">View Records Details</a></button></p>
+
+        <h3>Claims Submitted</h3>
+        <p><button><a href="#">View Claims History</a></button></p>
     </main>
+    
+        
 
     <footer id="footerPlaceholder"></footer>
 
