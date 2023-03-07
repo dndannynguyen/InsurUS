@@ -7,14 +7,22 @@ function insertName() {
             console.log(user.displayName);  //print the user name in the browser console
             user_Name = user.displayName;
 
+            currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
+            currentUser.get().then(userDoc=>{
+                //get the user name
+                var userName= userDoc.data().name;
+                console.log(userName);
+                //$("#name-goes-here").text(userName); //jquery
+                document.getElementById("name-goes-here").innerText=userName;
+            })
+
             //method #1:  insert with html only
             //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
             //method #2:  insert using jquery
-            $("#name-goes-here").text(user_Name); //using jquery
+            // $("#name-goes-here").text(user_Name); //using jquery
 
-        } else {
-            // No user is signed in.
-        }
+        } 
     });
 }
+
 insertName(); //run the function
