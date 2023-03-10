@@ -47,7 +47,7 @@ insertName(); //run the function
 function displayRecordsDynamically(collection) {
     let cardTemplate = document.getElementById("itemsDisplayTemplate");
 
-    db.collection(collection).get()   //the collection records"
+    db.collection(collection).limit(3).get()   //the collection records"
         .then(allRecords=> {
             
             allRecords.forEach(doc => { //iterate thru each doc
