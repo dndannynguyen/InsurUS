@@ -56,6 +56,8 @@ function displayRecordsDynamically(collection) {
                 var cost = doc.data().cost;
                 var brand = doc.data().brand;
                 var time = doc.data().timestamp;
+                let newcard = cardTemplate.content.cloneNode(true);
+
 
                 //update title and text and image
                 cardTemplate = recordTemplate.content.cloneNode(true);
