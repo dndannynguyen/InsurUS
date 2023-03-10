@@ -11,16 +11,18 @@ function showRecords() {
             let recordTemplate = document.getElementById("recordTemplate");
             let recordCardGroup = document.getElementById("recordCardGroup");
             
-            db.collection("records").where( "userID", "==", userID).get()
+            db.collection("records").where("userID", "==", userID).get()
                 .then(allRecords => {
                     records = allRecords.docs;
                     console.log(records);
                     records.forEach(doc => {
+
                         var name = doc.data().name; //gets the name field
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
                         var cost = doc.data().cost; //gets the length field
                         var time = doc.data().timestamp.toDate();
+
                         console.log(name)
                         console.log(type)
                         console.log(brand)
@@ -41,5 +43,7 @@ function showRecords() {
             console.log ("No user is signed in");
         }
     });    
+
 }
+
 showRecords();

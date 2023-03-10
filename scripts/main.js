@@ -24,44 +24,50 @@ insertName(); //run the function
 //-----------------------------------------------
 // Create a "max" number of objects
 //-----------------------------------------------
-function addObjects(max_objects) {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var itemsRef = db.collection("stored_items");
-    for (i = 1; i <= max_objects; i++) {
-        itemsRef.add({
-            name: "item number " + i,
-            details: "This is an item the user added",
-            lat: 49+i,
-            lng: -122+i, 
-            last_updated: firebase.firestore.FieldValue.serverTimestamp()
-        })
-    }
-}
+// function addObjects(max_objects) {
 
-addObjects(1);
+//     var itemsRef = db.collection("stored_items");
+//     for (i = 1; i <= max_objects; i++) {
+//         itemsRef.add({
+//             name: "item number " + i,
+//             details: "This is an item the user added",
+//             lat: 49+i,
+//             lng: -122+i, 
+//             last_updated: firebase.firestore.FieldValue.serverTimestamp()
+//         })
+//     }
+// }
+
+
 
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
-function displayCardsDynamically(collection) {
+
+function displayRecordsDynamically(collection) {
     let cardTemplate = document.getElementById("itemsDisplayTemplate");
 
-    db.collection(collection).get()   
-        .then(allItems=> {
-           
-            allItems.forEach(doc => { //iterate thru each doc
-                var title = doc.data().name;       // get value of the "name" key
-                var details = doc.data().details;  // get value of the "details" key
-                
-                let newcard = cardTemplate.content.cloneNode(true);
+    db.collection(collection).get()   //the collection records"
+        .then(allRecords=> {
+            
+            allRecords.forEach(doc => { //iterate thru each doc
+                var type = doc.data().type;
+                var name = doc.data().name;
+                var cost = doc.data().cost;
+                var brand = doc.data().brand;
+                var time = doc.data().timestamp;
 
-                
-                newcard.querySelector('.card-title').innerHTML = title;
-                newcard.querySelector('.card-text').innerHTML = details;
-                
+                //update title and text and image
+                newcard.querySelector('.card-title').innerHTML = name;
+                newcard.querySelector('.card-text').innerHTML = type;
+                newcard.querySelector('.card-text').innerHTML = cost;
+                newcard.querySelector('.card-text').innerHTML = brand;
+                newcard.querySelector('.card-text').innerHTML = time;
+                //attach to gallery
                 document.getElementById(collection + "-go-here").appendChild(newcard);
+
             })
         })
 }
 
-displayCardsDynamically("records");  
+displayRecordsDynamically("records");  
