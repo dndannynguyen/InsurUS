@@ -55,7 +55,7 @@ function displayRecordsDynamically(collection) {
                 var name = doc.data().name;
                 var cost = doc.data().cost;
                 var brand = doc.data().brand;
-                var time = doc.data().timestamp;
+               
                 let newcard = cardTemplate.content.cloneNode(true);
 
 
@@ -64,7 +64,7 @@ function displayRecordsDynamically(collection) {
                 newcard.querySelector('.card-type').innerHTML = type;
                 newcard.querySelector('.card-cost').innerHTML = cost;
                 newcard.querySelector('.card-brand').innerHTML = brand;
-                newcard.querySelector('.card-time').innerHTML = time;
+               
                 //attach to gallery
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
