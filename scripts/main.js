@@ -64,4 +64,4 @@ function displayCardsDynamically(collection) {
         })
 }
 
-displayCardsDynamically("stored_items");  
+displayCardsDynamically("records");  
