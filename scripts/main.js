@@ -59,10 +59,10 @@ function displayRecordsDynamically(collection) {
 
                 //update title and text and image
                 newcard.querySelector('.card-title').innerHTML = name;
-                newcard.querySelector('.card-text').innerHTML = type;
-                newcard.querySelector('.card-text').innerHTML = cost;
-                newcard.querySelector('.card-text').innerHTML = brand;
-                newcard.querySelector('.card-text').innerHTML = time;
+                newcard.querySelector('.card-type').innerHTML = type;
+                newcard.querySelector('.card-cost').innerHTML = cost;
+                newcard.querySelector('.card-brand').innerHTML = brand;
+                newcard.querySelector('.card-time').innerHTML = time;
                 //attach to gallery
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
