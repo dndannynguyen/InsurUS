@@ -60,7 +60,7 @@ function displayRecordsDynamically(collection) {
 
 
                 //update title and text and image
-                cardTemplate = recordTemplate.content.cloneNode(true);
+                cardTemplate = cardTemplate.content.cloneNode(true);
                 newcard.querySelector('.card-title').innerHTML = name;
                 newcard.querySelector('.card-type').innerHTML = type;
                 newcard.querySelector('.card-cost').innerHTML = cost;
