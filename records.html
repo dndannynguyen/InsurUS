@@ -17,6 +17,11 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
 
 
         <!-- Other libraries go here -->
@@ -53,10 +58,12 @@
                 </div>
             </div>
             <br>
-            <div class="card-group">
+            <div id="recordCardGroup" class="container row row-cols-auto">
+            </div>            
+            <template id="recordTemplate">
                 <div class="card border-light mb-3" style="max-width: 20rem;">
                     <div class="card-header">
-                        Item Placeholder
+                        <span id="item_name">Item Placeholder</span>
                         <div id="record-icons">
                             <span class="material-symbols-outlined" id="edit-record">
                                 edit
@@ -67,51 +74,13 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">Product Type: <span>something</span></p>
-                        <p class="card-text">Brand/Manufacturer: <span>something</span></p>
-                        <p class="card-text">Cost to Replace/Price: <span>something</span></p>
-                        <small class="text-muted">Date Added: <span>0/0/00</span></small>
+                        <p class="card-text">Product Type: <span id="item_type">something</span></p>
+                        <p class="card-text">Brand/Manufacturer: <span id="item_brand">something</span></p>
+                        <p class="card-text">Cost to Replace/Price: <span id="item_cost">something</span></p>
+                        <small class="text-muted">Date Added: <span id="date_added">0/0/00</span></small>
                     </div>
                 </div>
-                <div class="card border-light mb-3" style="max-width: 20rem;">
-                    <div class="card-header">
-                        Item Placeholder
-                        <div id="record-icons">
-                            <span class="material-symbols-outlined" id="edit-record">
-                                edit
-                            </span>
-                            <span class="material-symbols-outlined" id="delete-record">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Product Type: <span>something</span></p>
-                        <p class="card-text">Brand/Manufacturer: <span>something</span></p>
-                        <p class="card-text">Cost to Replace/Price: <span>something</span></p>
-                        <small class="text-muted">Date Added: <span>0/0/00</span></small>
-                    </div>
-                </div>
-                <div class="card border-light mb-3" style="max-width: 20rem;">
-                    <div class="card-header">
-                        Item Placeholder
-                        <div id="record-icons">
-                            <span class="material-symbols-outlined" id="edit-record">
-                                edit
-                            </span>
-                            <span class="material-symbols-outlined" id="delete-record">
-                                delete
-                            </span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Product Type: <span>something</span></p>
-                        <p class="card-text">Brand/Manufacturer: <span>something</span></p>
-                        <p class="card-text">Cost to Replace/Price: <span>something</span></p>
-                        <small class="text-muted">Date Added: <span>0/0/00</span></small>
-                    </div>
-                </div>
-            </div>
+            </template>
         </main>
 
         <footer id="footerPlaceholder"></footer>
@@ -125,6 +94,8 @@
         <!-- <script src="./scripts/script.js"></script> -->
         <script src="./scripts/firebaseAPI_DTC06.js"></script>
         <script src="./scripts/skeleton.js"></script>
+        <script src="./scripts/records.js"></script>
+        
 
     </body>
 
