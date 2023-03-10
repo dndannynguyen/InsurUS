@@ -55,7 +55,7 @@ function displayCardsDynamically(collection) {
                 
                 let newcard = cardTemplate.content.cloneNode(true);
 
-                //update title and text and image
+                
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-text').innerHTML = details;
                 
