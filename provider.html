@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Profile</title>
+    <title>Provider</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -20,7 +20,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
@@ -36,67 +35,45 @@
 </head>
 
 <body>
+    <nav id="navbarPlaceholder"></nav>
 
-    <main>
-        <nav id="navbarPlaceholder"></nav>
-
+    <div class="container ">
+        <h1>Some popular Providers</h1>
+        <!-- Here is the container for cards  -->
         <div class="container">
-            <h1>Your Profile</h1>
-            <form>
-                <fieldset class="mb-3" id="personalInfoFields" disabled>
-                    <div class="form-group">
-                        <label >User Name</label>
-                        <input type="text" id="nameInput" class="form-control" placeholder=" Please enter your name">
+            <div id="hikes-go-here" class="row row-cols-auto">
+            </div>
+        </div>
+        <!-- Templates for general use, not displayed -->
+        <template id="hikeCardTemplate">
+            <div class="card py-2 mx-2" style="width: 18rem">
+                <img class="card-image card-img-top" src=" ..." alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-length">placeholder</p>
+                    <main>
+                        <br />
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the
+                            bulk of the card's content.
+                        </p>
+                        <a class="btn btn-primary card-href">Read more ...</a>
                     </div>
-                    <div class="form-group">
-                        <label>User Email</label>
-                        <input type="text" id="emailInput" class="form-control" placeholder="Please enter your email">
-                    </div>
-                </fieldset>
-                <div class="d-flex justify-content-end mt-5">
-                    <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
-                    <span style="width: 10px"></span>
-                    <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
                 </div>
-            </form>
-
-
-
-            <p><b>Name: </b><span id="name-goes-here"></span></p>
-            <p><b>Email Address: </b><span id="userEmail"></span>#user@user.com</p>
-
-            <h3> Provider's Details</h3>
-            <p><b>Provider: </b><span id="provider">#Company 0001</span></p>
-            <p><b>Policy Number: </b><span id="policyNum">#Policy 0010</span></p>
-
-            <p><button><a href="#">Add Provider</a></button></p>
-            <p><button><a href="#">Change Provider</a></button></p>
-
-
-            <h3>Records</h3>
-            <p><span id="countItems">3</span> items added</p>
-            <p>Last update <span id="lastUpdate">3 days ago</span></p>
-            <p><button><a href="../records.html">View Records Details</a></button></p>
-
-            <h3>Claims Submitted</h3>
-            <p><button><a href="#">View Claims History</a></button></p>
+            </template>
         </div>
     </main>
-
-
-
+    
     <footer id="footerPlaceholder"></footer>
-
-
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/provider.js"></script>
     <script src="./scripts/firebaseAPI_DTC06.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
+
 </body>
 
 </html>
