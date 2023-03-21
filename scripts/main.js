@@ -46,31 +46,35 @@ insertName(); //run the function
 
 function displayRecordsDynamically(collection) {
     let cardTemplate = document.getElementById("Template");
-
-    db.collection(collection).limit(3).get()   //the collection records"
-        .then(allRecords=> {
-            
-            allRecords.forEach(doc => { //iterate thru each doc
-                var type = doc.data().type;
-                var name = doc.data().name;
-                var cost = doc.data().cost;
-                var brand = doc.data().brand;
-                var docID = doc.id;
-                let newcard = cardTemplate.content.cloneNode(true);
-
-
-                //update title and text and image
-                cardTemplate = cardTemplate.content.cloneNode(true);
-                newcard.querySelector('.card-title').innerHTML = "Item name: " + name;
-                newcard.querySelector('.card-type').innerHTML = "Type: " + type;
-                newcard.querySelector('.card-cost').innerHTML = "Cost: " + cost;
-                newcard.querySelector('.card-brand').innerHTML = "Brand: " + brand;
-                newcard.querySelector('a').href = "eachItem.html?docID="+docID;
-                //attach to gallery
-                document.getElementById(collection + "-go-here").appendChild(newcard);
-
-            })
-        })
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            var currentUser = db.collection("users").doc(user.uid)
+            var userID = user.uid;
+            db.collection("records").where("userID", "==", userID).limit(3).get()   //the collection records"
+                .then(allRecords=> {
+                    
+                    allRecords.forEach(doc => { //iterate thru each doc
+                        var type = doc.data().type;
+                        var name = doc.data().name;
+                        var cost = doc.data().cost;
+                        var brand = doc.data().brand;
+                        var docID = doc.id;
+                        let newcard = cardTemplate.content.cloneNode(true);
+        
+        
+                        //update title and text and image
+                        newcard.querySelector('.card-title').innerHTML = "Item name: " + name;
+                        newcard.querySelector('.card-type').innerHTML = "Type: " + type;
+                        newcard.querySelector('.card-cost').innerHTML = "Cost: " + cost;
+                        newcard.querySelector('.card-brand').innerHTML = "Brand: " + brand;
+                        newcard.querySelector('a').href = "eachItem.html?docID="+docID;
+                        //attach to gallery
+                        document.getElementById(collection + "-go-here").appendChild(newcard);
+        
+                    })
+                })
+        }
+    })
 }
 
 displayRecordsDynamically("records");  
