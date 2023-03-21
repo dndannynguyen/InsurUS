@@ -1,10 +1,10 @@
-function writeHikes() {
+function writeProviders() {
     //define a variable for the collection you want to create in Firestore to populate data
-    var hikesRef = db.collection("hikes");
+    var hikesRef = db.collection("providers");
 
     hikesRef.add({
         code: "BBY01",
-        name: "Burnaby Lake Park Trail", //replace with your own city?
+        name: "Company 1", //replace with your own city?
         city: "Burnaby",
         province: "BC",
         level: "easy",
@@ -17,7 +17,7 @@ function writeHikes() {
     });
     hikesRef.add({
         code: "AM01",
-        name: "Buntzen Lake Trail", //replace with your own city?
+        name: "Provider 2", //replace with your own city?
         city: "Anmore",
         province: "BC",
         level: "moderate",
@@ -30,7 +30,7 @@ function writeHikes() {
     });
     hikesRef.add({
         code: "NV01",
-        name: "Mount Seymour Trail", //replace with your own city?
+        name: "Insurance 3", //replace with your own city?
         city: "North Vancouver",
         province: "BC",
         level: "hard",
@@ -42,4 +42,4 @@ function writeHikes() {
         last_updated: firebase.firestore.Timestamp.fromDate(new Date("January 1, 2023"))
     });
 }
-
+writeProviders()
