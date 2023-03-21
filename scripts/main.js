@@ -20,7 +20,6 @@ function insertName() {
 
 insertName(); //run the function
 
-
 //-----------------------------------------------
 // Create a "max" number of objects
 //-----------------------------------------------
@@ -39,14 +38,12 @@ insertName(); //run the function
 // }
 
 
-
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 
 function displayRecordsDynamically(collection) {
     let cardTemplate = document.getElementById("Template");
-
     db.collection(collection).limit(3).get()   //the collection records"
         .then(allRecords=> {
             
@@ -58,7 +55,6 @@ function displayRecordsDynamically(collection) {
                 var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
-
                 //update title and text and image
                 cardTemplate = cardTemplate.content.cloneNode(true);
                 newcard.querySelector('.card-title').innerHTML = "Item name: " + name;
@@ -68,7 +64,6 @@ function displayRecordsDynamically(collection) {
                 newcard.querySelector('a').href = "eachItem.html?docID="+docID;
                 //attach to gallery
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-
             })
         })
 }
