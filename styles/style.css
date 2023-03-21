@@ -10,7 +10,7 @@ body {
 main {
     margin-top: 50px;
     padding-top: 50px;
-   
+    margin: auto;
 }
 /* nav and footer styles */
 #nav_logo {
@@ -75,6 +75,13 @@ main {
 }
 .card {
     border: none !important;
+    padding: 0 !important;
+}
+input[type=text] {
+    border-radius: 5px
+}
+#edit-record:hover, #delete-record:hover {
+    color: #1B2A44;
 }
 /* adding a record page styles */
 #submit_btn {

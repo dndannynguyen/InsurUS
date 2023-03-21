@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Each Item Review</title>
+    <title>My BCIT Project</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!------------------------>
@@ -47,39 +47,17 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-
-    <div class="container">
-        <h1><span id="itemName">this item</span></h1>
-        <div class="position-relative">
-           
-            <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
-                onclick="saveItemAndRedirect()">Update Item</button>
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+    <div class="card text-center">
+        <div class="card-header">
+            Your item is successfully updating!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Thanks for using our app!</h5>
+            <a href="main.html" class="btn btn-primary">See other items>
         </div>
     </div>
-
-    <div class="container">
-        <h2>Reviews:</h2>
-        <div id="details-go-here"></div>
-        <!-- Here is container for cards  -->
-        <div class="container">
-            <div id="reviewCardGroup" class="row row-cols-auto">
-            </div>
-        </div>
-    </div>
-
-    <template id="reviewCardTemplate">
-        <div class="card bg-secondary">
-            <img class="card-img-top">
-            <div class="card-body bg-light">
-                <h5 class="title">Name</h5>
-                <p class="brand">Brand</p>
-                <p class="cost">Cost</p>
-                <br>
-                <p class="description">This itsm has additional information below.
-                </p>
-            </div>
-        </div>
-    </template>
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -89,7 +67,8 @@
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI_template.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/eachItem.js"></script>
+ 
+    <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
