@@ -45,7 +45,7 @@ insertName(); //run the function
 //------------------------------------------------------------------------------
 
 function displayRecordsDynamically(collection) {
-    let cardTemplate = document.getElementById("itemsDisplayTemplate");
+    let cardTemplate = document.getElementById("Template");
 
     db.collection(collection).limit(3).get()   //the collection records"
         .then(allRecords=> {
@@ -55,17 +55,17 @@ function displayRecordsDynamically(collection) {
                 var name = doc.data().name;
                 var cost = doc.data().cost;
                 var brand = doc.data().brand;
-               
+                var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
 
                 //update title and text and image
                 cardTemplate = cardTemplate.content.cloneNode(true);
-                newcard.querySelector('.card-title').innerHTML = name;
-                newcard.querySelector('.card-type').innerHTML = type;
-                newcard.querySelector('.card-cost').innerHTML = cost;
-                newcard.querySelector('.card-brand').innerHTML = brand;
-               
+                newcard.querySelector('.card-title').innerHTML = "Item name: " + name;
+                newcard.querySelector('.card-type').innerHTML = "Type: " + type;
+                newcard.querySelector('.card-cost').innerHTML = "Cost: " + cost;
+                newcard.querySelector('.card-brand').innerHTML = "Brand: " + brand;
+                newcard.querySelector('a').href = "eachItem.html?docID="+docID;
                 //attach to gallery
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
