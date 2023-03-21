@@ -4,12 +4,12 @@ function loadSkeleton() {
         if (user) {
             // User is signed in.
             // Do something for the user here.
-            console.log($('#navbarPlaceholder').load('./text/navafterlogin.html'));
-            console.log($('#footerPlaceholder').load('./text/footer.html'));
+            $('#navbarPlaceholder').load('./text/navafterlogin.html');
+            $('#footerPlaceholder').load('./text/footer.html');
         } else {
             // No user is signed in.
-            console.log($('#navbarPlaceholder').load('./text/nav.html'));
-            console.log($('#footerPlaceholder').load('./text/footer.html'));
+            $('#navbarPlaceholder').load('./text/nav.html');
+            $('#footerPlaceholder').load('./text/footer.html');
         }
     });
 }

@@ -77,6 +77,12 @@ main {
 .card {
     border: none !important;
 }
+input[type=text] {
+    border-radius: 5px
+}
+#edit-record:hover, #delete-record:hover {
+    color: #1B2A44;
+}
 /* adding a record page styles */
 #submit_btn {
     height: 4rem;
