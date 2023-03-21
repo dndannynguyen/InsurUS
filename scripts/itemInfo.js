@@ -1,6 +1,6 @@
-var itemDocID = localStorage.getItem("itemDocID");    //visible to all functions on this page
+var hikeDocID = localStorage.getItem("itemDocID");    //visible to all functions on this page
 
-function getItemName(id) {
+function getHikeName(id) {
     db.collection("records")
       .doc(id)
       .get()
@@ -10,28 +10,33 @@ function getItemName(id) {
           });
 }
 
-getItemName(itemDocID);
+getHikeName(hikeDocID);
 
-function updateReview() {
-    console.log("updating the review")
-    let Brand = document.getElementById("brand").value;
+function writeReview() {
+    console.log("updating item")
+    let Name = document.getElementById("name").value;
+    let Type = document.getElementById("type").value;
     let Cost = document.getElementById("cost").value;
-    let Serial_Num = document.getElementById("serial_num").value;
-    let Timestamp = document.getElementById("timestamp").value;
+    let Brand = document.getElementById("brand").value;
+    let Status = document.querySelector('input[name="status"]:checked').value;
     
+    console.log(Name, Type, Cost, Brand, Status);
+
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            var currentUser = db.collection("records").doc(user.uid)
+            var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
                     var userEmail = userDoc.data().email;
                     db.collection("records").add({
-                        brand: Brand,
+                        itemDocID: itemDocID,
+                        userID: userID,
+                        name: Name,
+                        type: Type,
                         cost: Cost,
-                        serial_num: Serial_Num,
-                        timestamp: Timestamp,
+                        brand: Brand,
                     }).then(() => {
                         window.location.href = "thanks.html"; //new line added
                     })
@@ -42,3 +47,4 @@ function updateReview() {
         }
     });
 }
+
