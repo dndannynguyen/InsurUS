@@ -20,7 +20,6 @@ function insertName() {
 
 insertName(); //run the function
 
-
 //-----------------------------------------------
 // Create a "max" number of objects
 //-----------------------------------------------
@@ -39,7 +38,6 @@ insertName(); //run the function
 // }
 
 
-
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
@@ -48,7 +46,6 @@ function displayRecordsDynamically(collection) {
     let cardTemplate = document.getElementById("Template");
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;
             db.collection("records").where("userID", "==", userID).limit(3).get()   //the collection records"
                 .then(allRecords=> {
