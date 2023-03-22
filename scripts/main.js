@@ -47,7 +47,10 @@ function displayRecordsDynamically(collection) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             var userID = user.uid;
-            db.collection("records").where("userID", "==", userID).limit(3).get()   //the collection records"
+            db.collection("records").where("userID", "==", userID)
+            .orderBy("timestamp", "desc")
+            .limit(3)
+            .get()   //the collection records"
                 .then(allRecords=> {
                     
                     allRecords.forEach(doc => { //iterate thru each doc

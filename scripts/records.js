@@ -11,7 +11,10 @@ function showRecords() {
             let recordTemplate = document.getElementById("recordTemplate");
             let recordCardGroup = document.getElementById("recordCardGroup");
             
-            db.collection("records").where("userID", "==", userID).get()
+            db.collection("records")
+            .where("userID", "==", userID)
+            .orderBy("timestamp")
+            .get()
                 .then(allRecords => {
                     records = allRecords.docs;
                     console.log(records);
@@ -21,17 +24,11 @@ function showRecords() {
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
                         var cost = doc.data().cost; //gets the length field
-                        var time = doc.data().timestamp.toDate();
+                        var time = doc.data().timestamp.toDate().toDateString();
 
-                        console.log(name)
-                        console.log(type)
-                        console.log(brand)
-                        console.log(cost)
-                        console.log(time)
-        
                         let recordCard = recordTemplate.content.cloneNode(true);
                         recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                        // recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
