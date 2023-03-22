@@ -60,7 +60,7 @@ function displayRecordsDynamically(collection) {
         
         
                         //update title and text and image
-                        newcard.querySelector('.card-title').innerHTML = "Item name: " + name;
+                        newcard.querySelector('.card-title').innerHTML = name;
                         newcard.querySelector('.card-type').innerHTML = "Type: " + type;
                         newcard.querySelector('.card-cost').innerHTML = "Cost: " + cost;
                         newcard.querySelector('.card-brand').innerHTML = "Brand: " + brand;

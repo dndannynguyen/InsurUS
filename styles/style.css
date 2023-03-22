@@ -11,6 +11,7 @@ main {
     margin-top: 50px;
     padding-top: 50px;
     margin: auto;
+    min-height: 100%;
 }
 /* nav and footer styles */
 #nav_logo {
@@ -31,12 +32,6 @@ main {
     text-align: center;
     color: black;
     text-decoration: none;
-}
-
-#footer {
-    position: fixed;
-    margin: auto;
-    width: 85%;
 }
 
 .footer_link {
@@ -76,6 +71,12 @@ main {
 .card {
     border: none !important;
     padding: 0 !important;
+}
+.record {
+    width: 90% !important;
+}
+#recordCardGroup {
+    margin: auto;
 }
 input[type=text] {
     border-radius: 5px
