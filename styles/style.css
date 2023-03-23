@@ -81,8 +81,15 @@ main {
 input[type=text] {
     border-radius: 5px
 }
-#edit-record:hover, #delete-record:hover {
-    color: #1B2A44;
+#filter {
+    padding: 1.5px;
+    margin: 2px;
+}
+#edit-record:hover,
+#delete-record:hover, 
+#filter:hover {
+    box-shadow: 0 0 10px 5px #9BD7E7;
+    border-radius: 5px;
 }
 /* adding a record page styles */
 #submit_btn {

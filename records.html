@@ -31,7 +31,7 @@
             rel="stylesheet">
         <!-- Link to styles of your own -->
         <link rel="stylesheet" href="./styles/style.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Symbols" rel="stylesheet">
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet"
@@ -44,18 +44,27 @@
 
         <nav id="navbarPlaceholder"></nav>
         <main>
-            <div class="top-part">
+            <div class="top-part container">
                 <h1>Records</h1>
                 <p>View all your added records below!</p>
-                <div class="search_add_group">
-                    <div id="search-record-group">
+                <div class="search_add_group container">
+                    <div class="container" id="search-record-group">
                         <input id="search-record-bar" type="text">
-                        <span class="material-symbols-outlined">
-                            tune
+                        <select class="form-select btn-secondary" id="field" aria-label="Default select example">
+                            <option selected>Search Category</option>
+                            <option value="name">Item Name</option>
+                            <option value="type">Product Type</option>
+                            <option value="brand">Brand/Manufacturer</option>
+                            <option value="cost">Cost/Price</option>
+                            <option value="serial_num">Serial Number</option>
+                            <option value="timestamp">Date Added</option>
+                        </select>
+                        <span class="material-symbols-outlined" id="filter">
+                            search
                         </span>
                     </div>
-                    <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
                 </div>
+                <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
             </div>
             <br>
             <div id="recordCardGroup" class="container row row-cols-auto">
