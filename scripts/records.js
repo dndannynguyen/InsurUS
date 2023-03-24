@@ -29,6 +29,7 @@ function showRecords() {
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('.edit-record').setAttribute("id", docID)
                         recordCard.querySelector('.delete-record').setAttribute("id", docID)
                         recordCardGroup.appendChild(recordCard);
                     })
@@ -45,6 +46,10 @@ function reset_records() {
     $("#recordCardGroup").empty()
     showRecords()
     $("#search-record-bar").val("")
+}
+
+function editRecord(id) {
+    window.location.href = "eachItem.html?docID=" + id
 }
 
 function deleteRecord(id) {
@@ -72,12 +77,12 @@ $(document).ready(function () {
                 db.collection("records")
                 .where("userID", "==", userID)
                 .where(field, "==", search_term)
-                .get()
-                    .then(allRecords => {
+                    .onSnapshot(allRecords => {
                         records = allRecords.docs;
                         console.log(records);
                         records.forEach(doc => {
 
+                            var docID = doc.id;
                             var name = doc.data().name; //gets the name field
                             var type = doc.data().type; //gets the unique ID field
                             var brand = doc.data().brand;

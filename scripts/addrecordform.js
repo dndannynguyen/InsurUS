@@ -23,6 +23,7 @@ function addRecordDetails() {
                     type: Type,
                     brand: Brand,
                     cost: Cost,
+                    damaged: Damaged,
                     serial_num: SerialNum,
                     // damaged: Damaged,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
