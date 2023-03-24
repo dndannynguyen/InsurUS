@@ -63,6 +63,7 @@ main {
 .card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .search_add_group {
     display: flex;
@@ -81,6 +82,9 @@ main {
 input[type=text] {
     border-radius: 5px
 }
+#search-record-bar {
+    max-width: 150px;
+}
 #filter {
     padding: 1.5px;
     margin: 2px;
@@ -95,6 +99,23 @@ input[type=text] {
 }
 .btn-secondary {
     border-radius: 5px;
+}
+#record-icons {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 30px;
+}
+.dropdown {
+    width: 50%
+}
+.dropdown-filters {
+    display: flex;
+    flex-direction: row;
+}
+#record-page-header {
+    display: flex;
+    justify-content: space-between;
 }
 /* adding a record page styles */
 #submit_btn {

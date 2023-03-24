@@ -11,7 +11,7 @@ function showRecords() {
             
             db.collection("records")
             .where("userID", "==", userID)
-            .orderBy("timestamp")
+            .orderBy("timestamp", "desc")
                 .onSnapshot(allRecords => {
                     $("#recordCardGroup").empty()
                     records = allRecords.docs;
