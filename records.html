@@ -47,8 +47,8 @@
             <div class="top-part container">
                 <h1>Records</h1>
                 <p>View all your added records below!</p>
-                <div class="search_add_group container">
-                    <div class="container" id="search-record-group">
+                <div class="search_add_group">
+                    <div id="search-record-group">
                         <input id="search-record-bar" type="text">
                         <select class="form-select btn-secondary" id="field" aria-label="Default select example">
                             <option selected>Search Category</option>
@@ -62,6 +62,7 @@
                         <span class="material-symbols-outlined" id="filter">
                             search
                         </span>
+                        <button class=btn-primary id="reset_records" onclick="reset_records()">Reset Search</button>
                     </div>
                 </div>
                 <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
@@ -74,12 +75,12 @@
                     <div class="card-header">
                         <h5 id="item_name">Item Placeholder</h5>
                         <div id="record-icons">
-                            <span class="material-symbols-outlined" id="edit-record">
+                            <button class="material-symbols-outlined btn-secondary edit-record">
                                 edit
-                            </span>
-                            <span class="material-symbols-outlined" id="delete-record">
+                            </button>
+                            <button class="material-symbols-outlined btn-secondary delete-record" onclick="deleteRecord(this.id)">
                                 delete
-                            </span>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">

@@ -6,20 +6,17 @@ function showRecords() {
             var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;            
             //get the document for current user.
-            console.log(currentUser)
-            console.log(userID)
             let recordTemplate = document.getElementById("recordTemplate");
             let recordCardGroup = document.getElementById("recordCardGroup");
             
             db.collection("records")
             .where("userID", "==", userID)
             .orderBy("timestamp")
-            .get()
-                .then(allRecords => {
+                .onSnapshot(allRecords => {
+                    $("#recordCardGroup").empty()
                     records = allRecords.docs;
-                    console.log(records);
                     records.forEach(doc => {
-
+                        var docID = doc.id
                         var name = doc.data().name; //gets the name field
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
@@ -32,6 +29,7 @@ function showRecords() {
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('.delete-record').setAttribute("id", docID)
                         recordCardGroup.appendChild(recordCard);
                     })
                 })
@@ -47,9 +45,16 @@ function reset_records() {
     $("#recordCardGroup").empty()
     showRecords()
     $("#search-record-bar").val("")
-    $("button#reset-records").remove()
 }
 
+function deleteRecord(id) {
+    console.log(id)
+    deleted = confirm("Are you sure you want to delete this record?")
+    if (deleted) {
+        db.collection("records").doc(id).delete().then()
+        console.log("Deleted")
+    }
+}
 
 $(document).ready(function () {
     showRecords()
@@ -57,7 +62,6 @@ $(document).ready(function () {
         var search_term = $("#search-record-bar").val()
         var field = $("#field").val()
         // search_term = "%" + search_term + "%"
-        console.log(search_term)
         $("#recordCardGroup").empty()
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -89,9 +93,6 @@ $(document).ready(function () {
                             recordCardGroup.appendChild(recordCard);
                         })
                     })
-                $("#search-record-group").append(
-                    `<button class=btn-primary id="reset_records" onclick="reset_records()">Reset Search</button>`
-                )        
             } 
             else {
                 // No user is signed in.

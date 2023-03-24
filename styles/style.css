@@ -47,7 +47,7 @@ main {
 .btn-primary {
     background-color: #1B2A44 !important;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 .btn-primary:focus {
     box-shadow: 0 0 0 0.25rem rgba(27, 42, 68, 0.5);
@@ -85,10 +85,15 @@ input[type=text] {
     padding: 1.5px;
     margin: 2px;
 }
-#edit-record:hover,
-#delete-record:hover, 
+.edit-record,
+.delete-record {
+    padding: 1px;
+}
 #filter:hover {
     box-shadow: 0 0 10px 5px #9BD7E7;
+    border-radius: 5px;
+}
+.btn-secondary {
     border-radius: 5px;
 }
 /* adding a record page styles */
