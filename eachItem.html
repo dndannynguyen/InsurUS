@@ -46,17 +46,6 @@
 
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
-
-
-    <div class="container">
-        <h1><span id="itemName"></span></h1>
-        <div class="position-relative">
-            <img src="./images/drink1.png"/>
-            <button class="btn btn-primary position-absolute bottom-0 end-0 m-3"
-                onclick="updateItemAndRedirect()">Click here to make updates to the Item</button>
-        </div>
-    </div>
-
     <div class="container">
         <h2>Reviews:</h2>
         <div id="details-go-here"></div>
@@ -67,19 +56,70 @@
         </div>
     </div>
 
-    <template id="reviewCardTemplate">
-        <div class="card bg-secondary">
-            <img class="card-img-top">
-            <div class="card-body bg-light">
-                <h5 class="title">Name</h5>
-                <p class="brand">Brand</p>
-                <p class="cost">Cost</p>
+
+    <div class="container">
+        <br>
+        <h1>Update the item for <span id="itemName"></span></h1>
+        <br>
+        <form>
+           
+                <!--Choose what to do with item-->
+                <h2>If you want to remove this item, just select delete below</h2>
+                <h2>If you want to update the item, please select update and fill the rest of the following.</h2>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flooded" value="No">
+                    <label>Update</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flooded" value="unSure">
+                    <label>Delete</label>
+                </div>
                 <br>
-                <p class="description">This item has additional information below.
-                </p>
-            </div>
-        </div>
-    </template>
+                <br>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Change your item name</label>
+                    <input type="text" class="form-control" id="title" placeholder="">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Change your item type</label>
+                    <input type="text" class="form-control" id="type" placeholder="Your item's new type">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Change the item cost</label>
+                    <input type="text" class="form-control" id="cost" placeholder="Your item's new cost">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Change the item brand</label>
+                    <input type="text" class="form-control" id="brand" placeholder="Your item's new brand">
+                </div><br>
+
+                <label>Is your item broken?<span style="display:inline-block; width: 26pt;"></span></label>
+        
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" value="Yes">
+                    <label>Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" value="broken">
+                    <label>No</label>
+                </div>
+           
+                <br>
+                <br>
+
+                <div class="form-group">
+                   
+                    <br>
+                    
+                <br>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-lg btn-primary pull-right" onclick="writeReview()">Submit</button>
+                </div>
+        </form>
+    </div>
+    
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -87,7 +127,7 @@
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-    <script src="./scripts/firebaseAPI_template.js"></script>
+    <script src="./scripts/firebaseAPI_DTC06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/eachItem.js"></script>
 
