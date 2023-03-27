@@ -8,7 +8,7 @@
 // }
 
 // var ID = localStorage.getItem(itemDocID);    //visible to all functions on this page
-// console.log(ID)
+
 let params = new URL(window.location.href) //get the url from the search bar
 ID = params.searchParams.get("docID");
 console.log(ID)
@@ -18,11 +18,17 @@ function getItemName(id) {
       .doc(id)
       .get()
       .then((thisItem) => {
-        var itemName = thisItem.data().cost;
-        
+        var itemName = thisItem.data().name;
+        var itemType = thisItem.data().type;
         var itemCost = thisItem.data().cost;
+        var itemBrand = thisItem.data().brand;
 
         document.getElementById("itemName").innerHTML = itemName;
+        $("#name").val(itemName)
+        $("#type").val(itemType)
+        $("#cost").val(itemCost)
+        $("#brand").val(itemBrand)
+       
         
           });
 }
@@ -46,7 +52,7 @@ function writeReview() {
             //get the document for current user.
             currentUser.get()
                 .then(userDoc => {
-                    var userEmail = userDoc.data().email;
+                    var userEmail = userDoc.data().ID;
                     db.collection("records").add({
                         itemDocID: itemDocID,
                         userID: userID,
@@ -60,7 +66,7 @@ function writeReview() {
                 })
         } else {
             console.log("No user is signed in");
-            window.location.href = 'itemInfo.html';
+            window.location.href = 'thanks.html';
         }
     });
 }

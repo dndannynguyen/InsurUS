@@ -20,23 +20,6 @@ function insertName() {
 
 insertName(); //run the function
 
-//-----------------------------------------------
-// Create a "max" number of objects
-//-----------------------------------------------
-// function addObjects(max_objects) {
-
-//     var itemsRef = db.collection("stored_items");
-//     for (i = 1; i <= max_objects; i++) {
-//         itemsRef.add({
-//             name: "item number " + i,
-//             details: "This is an item the user added",
-//             lat: 49+i,
-//             lng: -122+i, 
-//             last_updated: firebase.firestore.FieldValue.serverTimestamp()
-//         })
-//     }
-// }
-
 
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
