@@ -20,8 +20,6 @@ function insertName() {
 
 insertName(); //run the function
 
-
-
 //-----------------------------------------------
 // Create a "max" number of objects
 //-----------------------------------------------

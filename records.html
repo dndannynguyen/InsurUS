@@ -45,27 +45,43 @@
         <nav id="navbarPlaceholder"></nav>
         <main>
             <div class="top-part container">
-                <h1>Records</h1>
+                <div id="record-page-header">
+                    <h1>
+                        Records
+                    </h1>
+                    <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
+                </div>
                 <p>View all your added records below!</p>
                 <div class="search_add_group">
                     <div id="search-record-group">
                         <input id="search-record-bar" type="text">
-                        <select class="form-select btn-secondary" id="field" aria-label="Default select example">
-                            <option selected>Search Category</option>
-                            <option value="name">Item Name</option>
-                            <option value="type">Product Type</option>
-                            <option value="brand">Brand/Manufacturer</option>
-                            <option value="cost">Cost/Price</option>
-                            <option value="serial_num">Serial Number</option>
-                            <option value="timestamp">Date Added</option>
-                        </select>
-                        <span class="material-symbols-outlined" id="filter">
+                        <span class="material-symbols-outlined" id="search">
                             search
+                        </span>
+                        <span class="material-symbols-outlined" id="sort">
+                            sort
                         </span>
                         <button class=btn-primary id="reset_records" onclick="reset_records()">Reset Search</button>
                     </div>
                 </div>
-                <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
+                <div class="dropdown-filters">
+                    <select class="form-select btn-secondary dropdown" id="field">
+                        <option value="Category" selected>Category</option>
+                        <option value="name">Item Name</option>
+                        <option value="type">Product Type</option>
+                        <option value="brand">Brand/Manufacturer</option>
+                        <option value="cost">Cost/Price</option>
+                        <option value="serial_num">Serial Number</option>
+                        <option value="timestamp">Date Added</option>
+                    </select>
+                    <select class="form-select btn-secondary dropdown sort">
+                        <option value="Sort By" selected>Sort By</option>
+                        <option value="alpha">A-Z</option>
+                        <option value="reverse-alpha">Z-A</option>
+                        <option value="damaged">Damaged Items</option>
+                        <option value="not-damaged">Non-Damaged Items</option>
+                    </select>
+                </div>
             </div>
             <br>
             <div id="recordCardGroup" class="container row row-cols-auto">
