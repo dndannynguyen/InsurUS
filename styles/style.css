@@ -93,7 +93,7 @@ input[type=text] {
 .delete-record {
     padding: 1px;
 }
-#filter:hover {
+#search:hover, #sort:hover {
     box-shadow: 0 0 10px 5px #9BD7E7;
     border-radius: 5px;
 }
