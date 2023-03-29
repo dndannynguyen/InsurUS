@@ -46,26 +46,17 @@
 
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
-    <div class="container">
-        <h2>Reviews:</h2>
-        <!-- Here is container for cards  -->
-        <div class="container">
-            <div id="reviewCardGroup" class="row row-cols-auto">
-            </div>
-        </div>
-    </div>
-
 
     <div class="container">
         <div id="reviewItem">
             <br>
-            <h1>Update the item <span id="itemName"></span></h1>
+            <h1>Here is your item: <span id="itemName"></span></h1>
             <br>
             <form>
 
                 <!--Choose what to do with item-->
-                <h2>Select delete below if you want to remove this item</h2>
-                <h2>If you want to update the item, please select update and fill the rest of the following.</h2>
+                <h2>Select delete below to remove this item</h2>
+                <h2>Or select update and fill the rest of the following to update this item.</h2>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="flooded" value="No">
@@ -116,7 +107,7 @@
                     <br>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-lg btn-primary pull-right"
-                            onclick="writeReview()">Submit</button>
+                            onclick="updateItem()">Submit</button>
                     </div>
             </form>
         </div>
