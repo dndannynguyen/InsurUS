@@ -22,10 +22,9 @@ function addRecordDetails() {
                     name: Name,
                     type: Type,
                     brand: Brand,
-                    cost: Cost,
+                    cost: parseInt(Cost),
                     damaged: Damaged,
                     serial_num: SerialNum,
-                    // damaged: Damaged,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
                     window.location.href = "success.html"; //new line added

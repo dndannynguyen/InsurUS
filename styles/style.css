@@ -64,6 +64,7 @@ main {
 #search-record-group {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .card-header {
     display: flex;
@@ -117,10 +118,13 @@ input[type=text] {
 .dropdown-filters {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 #record-page-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 /* adding a record page styles */
 #submit_btn {

@@ -3,7 +3,6 @@ function showRecords() {
         // Check if user is signed in:
         if (user) {
             //go to the correct user document by referencing to the user uid
-            var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;            
             //get the document for current user.
             let recordTemplate = document.getElementById("recordTemplate");
@@ -21,6 +20,8 @@ function showRecords() {
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
                         var cost = doc.data().cost; //gets the length field
+                        var damage = doc.data().damaged
+                        var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
 
                         let recordCard = recordTemplate.content.cloneNode(true);
@@ -29,6 +30,8 @@ function showRecords() {
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_status').innerHTML = damage
+                        recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
                         recordCard.querySelector('.delete-record').setAttribute("id", docID)
                         recordCardGroup.appendChild(recordCard);
@@ -66,8 +69,6 @@ function sort_asce_desc(category, filter_type) {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
-            //go to the correct user document by referencing to the user uid
-            var currentUser = db.collection("users").doc(user.uid)
             var userID = user.uid;            
             //get the document for current user.
             let recordTemplate = document.getElementById("recordTemplate");
@@ -85,6 +86,8 @@ function sort_asce_desc(category, filter_type) {
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
                         var cost = doc.data().cost; //gets the length field
+                        var damage = doc.data().damaged
+                        var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
                         
                         let recordCard = recordTemplate.content.cloneNode(true);
@@ -93,6 +96,8 @@ function sort_asce_desc(category, filter_type) {
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_status').innerHTML = damage
+                        recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
                         recordCard.querySelector('.delete-record').setAttribute("id", docID)
                         recordCardGroup.appendChild(recordCard);
@@ -112,6 +117,8 @@ function sort_asce_desc(category, filter_type) {
                         var type = doc.data().type; //gets the unique ID field
                         var brand = doc.data().brand;
                         var cost = doc.data().cost; //gets the length field
+                        var damage = doc.data().damaged
+                        var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
                         
                         let recordCard = recordTemplate.content.cloneNode(true);
@@ -120,6 +127,8 @@ function sort_asce_desc(category, filter_type) {
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
                         recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_status').innerHTML = damage
+                        recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
                         recordCard.querySelector('.delete-record').setAttribute("id", docID)
                         recordCardGroup.appendChild(recordCard);
@@ -132,6 +141,61 @@ function sort_asce_desc(category, filter_type) {
         }
     });    
 }
+
+function showRecordBasedState(state) {
+    var state_value = "No"
+    if (state == "damaged") {
+        state_value = "Yes"
+    }
+
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        if (user) {
+
+            //go to the correct user document by referencing to the user uid
+            var userID = user.uid;            
+            //get the document for current user.
+            let recordTemplate = document.getElementById("recordTemplate");
+            let recordCardGroup = document.getElementById("recordCardGroup");
+            
+            db.collection("records")
+            .where("userID", "==", userID)
+            .where("damaged", "==", state_value)
+            .orderBy("timestamp", "desc")
+                .onSnapshot(allRecords => {
+                    $("#recordCardGroup").empty()
+                    records = allRecords.docs;
+                    records.forEach(doc => {
+                        var docID = doc.id
+                        var name = doc.data().name; //gets the name field
+                        var type = doc.data().type; //gets the unique ID field
+                        var brand = doc.data().brand;
+                        var cost = doc.data().cost; //gets the length field
+                        var damage = doc.data().damaged
+                        var serial_num = doc.data().serial_num
+                        var time = doc.data().timestamp.toDate().toDateString();
+
+                        let recordCard = recordTemplate.content.cloneNode(true);
+                        recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
+                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#item_type').innerHTML = type;
+                        recordCard.querySelector('#item_brand').innerHTML = brand;
+                        recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_status').innerHTML = damage
+                        recordCard.querySelector('#item_serial_num').innerHTML = serial_num
+                        recordCard.querySelector('.edit-record').setAttribute("id", docID)
+                        recordCard.querySelector('.delete-record').setAttribute("id", docID)
+                        recordCardGroup.appendChild(recordCard);
+                    })
+                })
+        } else {
+            // No user is signed in.
+            console.log ("No user is signed in");
+        }
+    });    
+
+}
+
 
 $(document).ready(function () {
     showRecords()
@@ -148,6 +212,7 @@ $(document).ready(function () {
         }
         else if (sortby == "damaged" || sortby == "not-damaged") {
             console.log("sorting by damage")
+            showRecordBasedState(sortby)
         }
         else {
             console.log("no sort")
@@ -184,6 +249,8 @@ $(document).ready(function () {
                             var type = doc.data().type; //gets the unique ID field
                             var brand = doc.data().brand;
                             var cost = doc.data().cost; //gets the length field
+                            var damage = doc.data().damaged
+                            var serial_num = doc.data().serial_num
                             var time = doc.data().timestamp.toDate().toDateString();
                             
                             let recordCard = recordTemplate.content.cloneNode(true);
@@ -192,6 +259,10 @@ $(document).ready(function () {
                             recordCard.querySelector('#item_type').innerHTML = type;
                             recordCard.querySelector('#item_brand').innerHTML = brand;
                             recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                            recordCard.querySelector('#item_status').innerHTML = damage
+                            recordCard.querySelector('#item_serial_num').innerHTML = serial_num
+                            recordCard.querySelector('.edit-record').setAttribute("id", docID)
+                            recordCard.querySelector('.delete-record').setAttribute("id", docID)
                             recordCardGroup.appendChild(recordCard);
                         })
                     })
