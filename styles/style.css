@@ -88,9 +88,6 @@ main {
 input[type=text] {
     border-radius: 5px
 }
-#search-record-bar {
-    max-width: 150px;
-}
 #filter {
     padding: 1.5px;
     margin: 2px;

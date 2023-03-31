@@ -77,4 +77,13 @@ function displayRecordsDynamically(collection) {
     })
 }
 
-displayRecordsDynamically("records");  
+displayRecordsDynamically("records");
+  
+function deleteRecord(id) {
+    console.log(id)
+    deleted = confirm("Are you sure you want to delete this record?")
+    if (deleted) {
+        db.collection("records").doc(id).delete().then()
+        console.log("Deleted")
+    }
+}
