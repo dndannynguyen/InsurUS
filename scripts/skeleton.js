@@ -8,7 +8,7 @@ function loadSkeleton() {
             $('#footerPlaceholder').load('./text/footer.html');
         } else {
             // No user is signed in.
-            $('#navbarPlaceholder').load('./text/nav.html');
+            $('#navbarPlaceholder').load('./text/navb4login.html');
             $('#footerPlaceholder').load('./text/footer.html');
         }
     });
