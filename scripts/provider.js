@@ -106,13 +106,29 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
 
+                newcard.querySelector('b').id = 'register-' + docID;
+                                // this line will call a function to save the providers to the user's document             
+                newcard.querySelector('b').onclick = () => saveRegister(docID);
+
+
                 currentUser.get().then(userDoc => {
                     //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
+                    var register = userDoc.data().register;
+                    if (register.includes(docID)) {
                        document.getElementById('save-' + docID).innerText = 'favorite';
                     }
+                    var registration = userDoc.data().registration;
+                    if (registration.includes(docID)) {
+                    document.getElementById('register-' + docID).innerText = 'Register';
+                    }
                 })
+                
+
+                
+                // currentUser.get().then(userDoc => {
+                //     //get the user name
+                   
+                // })
 
 
                 //Finally done modifying newcard
@@ -150,7 +166,7 @@ function displayCardsDynamically(collection) {
 //         });
 // }
 
-function saveProvider(providerDocID) {
+function saveRegister(providerDocID) {
     currentUser.set({
             providers: firebase.firestore.FieldValue.arrayUnion(providerDocID)
         }, {
@@ -158,12 +174,14 @@ function saveProvider(providerDocID) {
         })
         .then(function () {
             console.log("Provider has been saved for: " + currentUser);
-            var iconID = 'save-' + providerDocID;
+            var iconID = 'register-' + providerDocID;
             //console.log(iconID);
 						//this is to change the icon of the provider that was saved to "filled"
             document.getElementById(iconID).innerText = 'choseProvider';
         });
 }
+
+
 
 function saveBookmark(providerDocID) {
     currentUser.get()
