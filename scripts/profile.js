@@ -112,18 +112,32 @@ function editUserInfo() {
     var userName = document.getElementById("nameInput").value;
     var userEmail = document.getElementById("emailInput").value;
     var userCity = document.getElementById("cityInput").value;
+    // get the original email value
+    var originalEmail = currentUser.get("email");
 
+    // check if the user has changed the email address
+    if (userEmail !== originalEmail) {
+        alert("You cannot change your email address!");
+        return;
+    }
     console.log(userName, userEmail, userCity)
+
+    if (userEmail != email) {
+        alert("You cannot change your email address!");
+    }
     //b) update user's document in Firestore
     currentUser.update({
         name: userName,
-        email: userEmail,
+        
         city: userCity
+
     })
     .then(() => {
         console.log("Document successfully updated!");
     })
     //c) disable edit 
     document.getElementById('personalInfoFields').disabled = true;
+    location.reload();
 
 }
+
