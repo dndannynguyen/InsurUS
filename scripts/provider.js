@@ -52,15 +52,15 @@ function insertNameFromFirestore() {
 // insertNameFromFirestore();
 
 // //-----------------------------------------------
-// // Create a "max" number of hike document objects
+// // Create a "max" number of provider document objects
 // //-----------------------------------------------
 function writeProviderLoop(max) {
     //define a variable for the collection you want to create in Firestore to populate data
     var providersRef = db.collection("providers");
-    for (i = 1; i <= max; i++) {
+    for (i = 6; i <= max; i++) {
         providersRef.add({ //add to database, autogen ID
             code: "pic" + i,
-            rating: Math.floor(Math.random() * 25) / 10 + 2.5,
+            rating: Math.floor(Math.random() * 25) / 10 + 2.5 + " ★",
             name: "Provider " + i,
             details: "This provider is amazing. You will love Provider " + i,
             policy_number: Math.floor(Math.random() * 18001116),
@@ -76,21 +76,21 @@ function displayCardsDynamically(collection) {
     db.collection(collection)
         // .limit(3)
         .get() //the collection called "hikes"
-        .then(allHikes => {
+        .then(allProviders => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
-            allHikes.forEach(doc => { //iterate thru each doc
+            allProviders.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name; // get value of the "name" key
                 var details = doc.data().details; // get value of the "details" key
-                var hikeCode = doc.data().code; //get unique ID to each hike to be used for fetching right image
+                var providerCode = doc.data().code; //get unique ID to each provider to be used for fetching right image
                 var rating = doc.data().rating; //gets the rating field
                 var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
                 //update title and text and image etc.
                 newcard.querySelector('.card-title').innerHTML = title;
-                //newcard.querySelector('.card-length').innerHTML = hikeLength + "km";
+                //newcard.querySelector('.card-length').innerHTML = providerLength + "km";
                 newcard.querySelector('.card-text').innerHTML = details;
-                newcard.querySelector('.card-image').src = `./images/${hikeCode}.jpg`; //Example: NV01.jpg
+                newcard.querySelector('.card-image').src = `./images/${providerCode}.png`; //Example: NV01.jpg
                 newcard.querySelector('a').href = "profile.html?docID=" + docID;
 
                 //NEW LINE: update to display length, duration, last updated
@@ -100,9 +100,9 @@ function displayCardsDynamically(collection) {
 
                 //NEW LINES: next 2 lines are new for demo#11
                 //this line sets the id attribute for the <i> tag in the format of "save-hikdID" 
-                //so later we know which hike to bookmark based on which hike was clicked
+                //so later we know which provider to bookmark based on which provider was clicked
                 newcard.querySelector('i').id = 'save-' + docID;
-                // this line will call a function to save the hikes to the user's document             
+                // this line will call a function to save the providers to the user's document             
                 newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
 
@@ -116,7 +116,7 @@ function displayCardsDynamically(collection) {
 
 
                 //Finally done modifying newcard
-                //attach to gallery, Example: "hikes-go-here"
+                //attach to gallery, Example: "providers-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
                 //i++;   //Optional: iterate variable to serve as unique ID
@@ -124,28 +124,68 @@ function displayCardsDynamically(collection) {
         })
 }
 
-// displayCardsDynamically("hikes");  //input param is the name of the collection
+// displayCardsDynamically("providers");  //input param is the name of the collection
 
 // insertName(); //run the function
 // readQuote("tuesday");        //calling the function
-// writeHikes();
+// writeproviders();
 
 //-----------------------------------------------------------------------------
 // This function is called whenever the user clicks on the "bookmark" icon.
-// It adds the hike to the "bookmarks" array
+// It adds the provider to the "bookmarks" array
 // Then it will change the bookmark icon from the hollow to the solid version. 
 //-----------------------------------------------------------------------------
-function saveBookmark(hikeDocID) {
+function saveBookmark(providerDocID) {
     currentUser.set({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(hikeDocID)
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(providerDocID)
         }, {
             merge: true
         })
         .then(function () {
             console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + hikeDocID;
+            var iconID = 'save-' + providerDocID;
             //console.log(iconID);
-						//this is to change the icon of the hike that was saved to "filled"
+						//this is to change the icon of the provider that was saved to "filled"
             document.getElementById(iconID).innerText = 'bookmark';
         });
+}
+
+function saveProvider(providerDocID) {
+    currentUser.set({
+            providers: firebase.firestore.FieldValue.arrayUnion(providerDocID)
+        }, {
+            merge: true
+        })
+        .then(function () {
+            console.log("Provider has been saved for: " + currentUser);
+            var iconID = 'save-' + providerDocID;
+            //console.log(iconID);
+						//this is to change the icon of the provider that was saved to "filled"
+            document.getElementById(iconID).innerText = 'choseProvider';
+        });
+}
+
+function saveBookmark(providerDocID) {
+    currentUser.get()
+        .then(function(doc) {
+            var bookmarks = doc.data().bookmarks;
+            var bookmarkIndex = bookmarks.indexOf(providerDocID);
+            if (bookmarkIndex > -1) {
+                bookmarks.splice(bookmarkIndex, 1);
+                currentUser.update({ bookmarks: bookmarks })
+                    .then(function() {
+                        console.log("Bookmark has been removed for: " + currentUser);
+                        var iconID = 'save-' + providerDocID;
+                        document.getElementById(iconID).innerText = 'bookmark_border';
+                    });
+            } else {
+                bookmarks.push(providerDocID);
+                currentUser.update({ bookmarks: bookmarks })
+                    .then(function() {
+                        console.log("Bookmark has been saved for: " + currentUser);
+                        var iconID = 'save-' + providerDocID;
+                        document.getElementById(iconID).innerText = 'bookmark';
+                    });
+            }
+        })
 }
