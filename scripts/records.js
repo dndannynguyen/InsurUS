@@ -278,5 +278,16 @@ $(document).ready(function () {
         }
 
     })
-
+    $("#field").click(function () {
+        var value = $("#field").val()
+        if (value == "cost") {
+            console.log("cost")
+            $("#asec").html("Low to High")
+            $("#desc").html("High to Low")
+        }
+        else {
+            $("#asec").html("A-Z")
+            $("#desc").html("Z-A")
+        }
+    })
 })
