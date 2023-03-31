@@ -117,6 +117,7 @@ input[type=text] {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    padding-bottom: 0.5rem;
 }
 #record-page-header {
     display: flex;
