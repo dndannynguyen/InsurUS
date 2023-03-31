@@ -64,6 +64,7 @@ main {
 #search-record-group {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .card-header {
     display: flex;
@@ -86,9 +87,6 @@ main {
 }
 input[type=text] {
     border-radius: 5px
-}
-#search-record-bar {
-    max-width: 150px;
 }
 #filter {
     padding: 1.5px;
@@ -117,10 +115,13 @@ input[type=text] {
 .dropdown-filters {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 #record-page-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 /* adding a record page styles */
 #submit_btn {

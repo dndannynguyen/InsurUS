@@ -1,14 +1,5 @@
 
 
-// function updateItemAndRedirect(){
-//     let params = new URL(window.location.href) //get the url from the search bar
-//     ID = params.searchParams.get("docID");
-//     localStorage.setItem('itemDocID', ID);
-//     window.location.href = 'thanks.html';
-// }
-
-// var ID = localStorage.getItem(itemDocID);    //visible to all functions on this page
-
 let params = new URL(window.location.href) //get the url from the search bar
 ID = params.searchParams.get("docID");
 console.log(ID)
@@ -20,14 +11,16 @@ function getItemName(id) {
       .then((thisItem) => {
         var itemName = thisItem.data().name;
         var itemType = thisItem.data().type;
-        var itemCost = thisItem.data().cost;
         var itemBrand = thisItem.data().brand;
+        var itemCost = thisItem.data().cost;
+        var itemSerialNum = thisItem.data().serial_num;
 
         document.getElementById("itemName").innerHTML = itemName;
         $("#name").val(itemName)
         $("#type").val(itemType)
-        $("#cost").val(itemCost)
         $("#brand").val(itemBrand)
+        $("#cost").val(itemCost)
+        $("#serial_num").val(itemSerialNum)
        
         
           });
@@ -40,12 +33,9 @@ function updateItem() {
     console.log("updating item")
     let Name = document.getElementById("name").value;
     let Type = document.getElementById("type").value;
-    let Cost = document.getElementById("cost").value;
     let Brand = document.getElementById("brand").value;
-
-    console.log(Name, Type, Cost, Brand);
-
-    
+    let Cost = document.getElementById("cost").value;
+    let SerialNum = document.getElementById("serial_num").value;
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -54,31 +44,14 @@ function updateItem() {
             currentItem.update({
                 name: Name,
                 type: Type,
+                brand: Brand,
                 cost: Cost,
-                brand: Brand
+                serial_num: SerialNum
             })
             .then(() => {
                 window.location.href = "thanks.html";
             }) 
 
-            // var currentUser = db.collection("users").doc(user.uid)
-            // var userID = user.uid;
-            
-            // console.log(userID)
- 
-            // // get the document for the current user
-            // currentUser.get().then(userDoc => {
-            //     var userEmail = userDoc.data().email;
-            //     db.collection("records").set({
-            //         name: Name,
-            //         type: Type,
-            //         cost: Cost,
-            //         brand: Brand,
-                    
-            //     }).then(() => {
-            //         window.location.href = "thanks.html";
-            //     })
-            // })
         } else {
             console.log("No users signed in.")
             window.location.href = 'eachItem.html';
