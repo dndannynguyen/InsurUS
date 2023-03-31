@@ -51,19 +51,18 @@
                     </h1>
                     <button class="btn-primary" onclick="location.href = '../addrecordform.html';">Add a Record</button>
                 </div>
+                <br>
                 <p>View all your added records below!</p>
-                <div class="search_add_group">
-                    <div id="search-record-group">
-                        <input id="search-record-bar" type="text">
-                        <span class="material-symbols-outlined" id="filter">
-                            search
-                        </span>
-                        <button class=btn-primary id="reset_records" onclick="reset_records()">Reset Search</button>
-                    </div>
+                <div id="search-record-group">
+                    <input id="search-record-bar" type="text">
+                    <button class=btn-primary id="reset_records" onclick="reset_records()">
+                        Reset
+                    </button>
                 </div>
+                <br>
                 <div class="dropdown-filters">
-                    <select class="form-select btn-secondary dropdown" id="field" aria-label="Default select example">
-                        <option selected>Category</option>
+                    <select class="form-select btn-secondary dropdown" id="field" style="display: block;width: 80%;">
+                        <option value="Category" selected>Category</option>
                         <option value="name">Item Name</option>
                         <option value="type">Product Type</option>
                         <option value="brand">Brand/Manufacturer</option>
@@ -71,19 +70,21 @@
                         <option value="serial_num">Serial Number</option>
                         <option value="timestamp">Date Added</option>
                     </select>
-                    <select class="form-select btn-secondary dropdown" id="field" aria-label="Default select example">
-                        <option selected>Sort By</option>
-                        <option value="name-asc">Item Name: A-Z</option>
-                        <option value="name-desc">Item Name: Z-A</option>
-                        <option value="type-asc">Product Type: A-Z</option>
-                        <option value="type-desc">Product Type: Z-A</option>
-                        <option value="brand-asc">Brand/Manufacturer: A-Z</option>
-                        <option value="brand-desc">Brand/Manufacturer: Z-A</option>
-                        <option value="cost-low">Cost/Price: High-Low</option>
-                        <option value="cost-high">Cost/Price: Low-High</option>
-                        <option value="timestamp-desc">Date Added: Most Recent</option>
-                        <option value="timestamp-asc">Date Added: Oldest First</option>
+                    <span class="material-symbols-outlined" id="search">
+                        search
+                    </span>
+                </div>
+                <div class="dropdown-filters">
+                    <select class="form-select btn-secondary dropdown sort" style="display: block;width: 80%;">
+                        <option value="Sort By" selected>Sort By</option>
+                        <option value="alpha">A-Z</option>
+                        <option value="reverse-alpha">Z-A</option>
+                        <option value="damaged">Damaged Items</option>
+                        <option value="not-damaged">Non-Damaged Items</option>
                     </select>
+                    <span class="material-symbols-outlined" id="sort">
+                        sort
+                    </span>
                 </div>
             </div>
             <br>
@@ -106,6 +107,8 @@
                         <p class="card-text">Product Type: <span id="item_type">something</span></p>
                         <p class="card-text">Brand/Manufacturer: <span id="item_brand">something</span></p>
                         <p class="card-text">Cost to Replace/Price: <span id="item_cost">something</span></p>
+                        <p class="card-text">Damaged: <span id="item_status">something</span></p>
+                        <p class="card-text">Serial Number: <span id="item_serial_num">something</span></p>
                         <small class="text-muted">Date Added: <span id="date_added">0/0/00</span></small>
                     </div>
                 </div>

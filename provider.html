@@ -28,23 +28,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 
 <body>
     <nav id="navbarPlaceholder"></nav>
     <main>
         <div class="container">
-            <h1>Some popular providers: </h1>
+            <h1>Choose your provider: </h1>
+            <br>
             <!-- Here is the container for cards  -->
             <div class="container">
                 <div id="providers-go-here" class="row row-cols-auto">
                     <!-- Templates for general use, not displayed -->
                     <template id="providerCardTemplate">
-                        <div class="card py-2 mx-2" style="width: 18rem">
+                        <div class="card py-2 mx-2 bg-dark mt-3" style="width: 19rem;">
                             <img class="card-image card-img-top" src=" ..." alt="..." />
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
@@ -54,8 +55,8 @@
                                     Some quick example text to build on the card title and make up the
                                     bulk of the card's content.
                                 </p>
-                                <i class="material-icons">bookmark_border</i>
-                                <a class="btn btn-primary card-href">Read more ...</a>
+                                <i class="material-icons" style="font-size: 2.5em; vertical-align: -13px;"">favorite_border</i>
+                                <a class="btn btn-primary card-href">Request To Register</a>
                             </div>
                         </div>
                     </template>
@@ -75,6 +76,7 @@
     <script src="./scripts/firebaseAPI_DTC06.js"></script>
     <script src="./scripts/provider.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./profile.js"></script>
 
 </body>
 

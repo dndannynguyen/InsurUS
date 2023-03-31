@@ -1,14 +1,5 @@
 
 
-// function updateItemAndRedirect(){
-//     let params = new URL(window.location.href) //get the url from the search bar
-//     ID = params.searchParams.get("docID");
-//     localStorage.setItem('itemDocID', ID);
-//     window.location.href = 'thanks.html';
-// }
-
-// var ID = localStorage.getItem(itemDocID);    //visible to all functions on this page
-
 let params = new URL(window.location.href) //get the url from the search bar
 ID = params.searchParams.get("docID");
 console.log(ID)
@@ -20,14 +11,16 @@ function getItemName(id) {
       .then((thisItem) => {
         var itemName = thisItem.data().name;
         var itemType = thisItem.data().type;
-        var itemCost = thisItem.data().cost;
         var itemBrand = thisItem.data().brand;
+        var itemCost = thisItem.data().cost;
+        var itemSerialNum = thisItem.data().serial_num;
 
         document.getElementById("itemName").innerHTML = itemName;
         $("#name").val(itemName)
         $("#type").val(itemType)
-        $("#cost").val(itemCost)
         $("#brand").val(itemBrand)
+        $("#cost").val(itemCost)
+        $("#serial_num").val(itemSerialNum)
        
         
           });
@@ -35,39 +28,33 @@ function getItemName(id) {
 
 getItemName(ID);
 
-function writeReview() {
+
+function updateItem() {
     console.log("updating item")
     let Name = document.getElementById("name").value;
     let Type = document.getElementById("type").value;
-    let Cost = document.getElementById("cost").value;
     let Brand = document.getElementById("brand").value;
-    let Status = document.querySelector('input[name="status"]:checked').value;
-    
-    console.log(Name, Type, Cost, Brand, Status);
+    let Cost = document.getElementById("cost").value;
+    let SerialNum = document.getElementById("serial_num").value;
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            var currentUser = db.collection("users").doc(user.uid)
-            var userID = user.uid;
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    var userEmail = userDoc.data().ID;
-                    db.collection("records").add({
-                        itemDocID: itemDocID,
-                        userID: userID,
-                        name: Name,
-                        type: Type,
-                        cost: Cost,
-                        brand: Brand,
-                    }).then(() => {
-                        window.location.href = "thanks.html"; //new line added
-                    })
-                })
-        } else {
-            console.log("No user is signed in");
-            window.location.href = 'thanks.html';
-        }
-    });
-}
 
+            var currentItem = db.collection("records").doc(ID)
+            currentItem.update({
+                name: Name,
+                type: Type,
+                brand: Brand,
+                cost: Cost,
+                serial_num: SerialNum
+            })
+            .then(() => {
+                window.location.href = "thanks.html";
+            }) 
+
+        } else {
+            console.log("No users signed in.")
+            window.location.href = 'eachItem.html';
+        }
+    })
+}

@@ -45,25 +45,51 @@
             <form>
                 <fieldset class="mb-3" id="personalInfoFields" disabled>
                     <div class="form-group">
-                        <label >User Name</label>
-                        <input type="text" id="nameInput" class="form-control" placeholder=" Please enter your name">
+                        <label >Name</label>
+                        <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                     </div>
                     <div class="form-group">
-                        <label>User Email</label>
-                        <input type="text" id="emailInput" class="form-control" placeholder="Please enter your email">
+                        <label >Email</label>
+                        <input type="text" id="emailInput" class="form-control" placeholder="Enter your email" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label >City</label>
+                        <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
                     </div>
                 </fieldset>
                 <div class="d-flex justify-content-end mt-5">
-                    <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+                    <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit (Not your Email!)</button>
                     <span style="width: 10px"></span>
                     <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
                 </div>
             </form>
+        </div>
 
 
+        <div class="container">
+            <h1>Provider</h1>
+            <form>
+                <fieldset class="mb-3" id="personalInfoFields" disabled>
+                    <div class="form-group">
+                        <label >Name</label>
+                        <input type="text" id="pnameInput" class="form-control" placeholder="No provider registed yet">
+                    </div>
+                    <div class="form-group">
+                        <label >Policy Number</label>
+                        <input type="text" id="plcInput" class="form-control" placeholder="">
+                    </div>
+                    
+                </fieldset>
+                <div class="d-flex justify-content-end mt-5">
+                    <button type="button" class="btn btn-info"><a class="nav-link" href="../provider.html" style="color: black; padding: 0%;">Choose Provider</a></button>
+                    
+                </div>
+            </form>
+        </div>
 
-            <p><b>Name: </b><span id="name-goes-here"></span></p>
-            <p><b>Email Address: </b><span id="userEmail"></span>#user@user.com</p>
+        <div>
+            <!-- <p><b>Name: </b><span id="name-goes-here"></span></p>
+            <p><b>Email Address: </b><span id="userEmail"></span>#user@user.com</p> -->
 
             <h3> Provider's Details</h3>
             <p><b>Provider: </b><span id="provider">#Company 0001</span></p>
@@ -78,8 +104,6 @@
             <p>Last update <span id="lastUpdate">3 days ago</span></p>
             <p><button><a href="../records.html">View Records Details</a></button></p>
 
-            <h3>Claims Submitted</h3>
-            <p><button><a href="#">View Claims History</a></button></p>
         </div>
     </main>
 
@@ -96,7 +120,7 @@
     <!-- <script src="./scripts/script.js"></script> -->
     <script src="./scripts/firebaseAPI_DTC06.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
+    <script src="./scripts/profile.js"></script>
 </body>
 
 </html>
