@@ -18,7 +18,7 @@ function addRecordDetails() {
                     name: Name,
                     type: Type,
                     brand: Brand,
-                    cost: parseInt(Cost),
+                    cost: parseFloat(Cost),
                     damaged: Damaged,
                     serial_num: SerialNum,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
