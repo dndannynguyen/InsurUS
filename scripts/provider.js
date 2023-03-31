@@ -135,20 +135,20 @@ function displayCardsDynamically(collection) {
 // It adds the provider to the "bookmarks" array
 // Then it will change the bookmark icon from the hollow to the solid version. 
 //-----------------------------------------------------------------------------
-function saveBookmark(providerDocID) {
-    currentUser.set({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(providerDocID)
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("bookmark has been saved for: " + currentUser);
-            var iconID = 'save-' + providerDocID;
-            //console.log(iconID);
-						//this is to change the icon of the provider that was saved to "filled"
-            document.getElementById(iconID).innerText = 'bookmark';
-        });
-}
+// function saveBookmark(providerDocID) {
+//     currentUser.set({
+//             bookmarks: firebase.firestore.FieldValue.arrayUnion(providerDocID)
+//         }, {
+//             merge: true
+//         })
+//         .then(function () {
+//             console.log("bookmark has been saved for: " + currentUser);
+//             var iconID = 'save-' + providerDocID;
+//             //console.log(iconID);
+// 						//this is to change the icon of the provider that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'bookmark';
+//         });
+// }
 
 function saveProvider(providerDocID) {
     currentUser.set({
@@ -176,7 +176,7 @@ function saveBookmark(providerDocID) {
                     .then(function() {
                         console.log("Bookmark has been removed for: " + currentUser);
                         var iconID = 'save-' + providerDocID;
-                        document.getElementById(iconID).innerText = 'bookmark_border';
+                        document.getElementById(iconID).innerText = 'favorite_border';
                     });
             } else {
                 bookmarks.push(providerDocID);
@@ -184,7 +184,7 @@ function saveBookmark(providerDocID) {
                     .then(function() {
                         console.log("Bookmark has been saved for: " + currentUser);
                         var iconID = 'save-' + providerDocID;
-                        document.getElementById(iconID).innerText = 'bookmark';
+                        document.getElementById(iconID).innerText = 'favorite';
                     });
             }
         })
