@@ -73,6 +73,7 @@ function populateUserInfo() {
                     var userName = userDoc.data().name;
                     var userEmail = userDoc.data().email;
                     var userCity = userDoc.data().city;
+                    var providerName = userDoc.data().providerName;
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
@@ -83,6 +84,9 @@ function populateUserInfo() {
                     }
                     if (userCity != null) {
                         document.getElementById("cityInput").value = userCity;
+                    }
+                    if (userCity != null) {
+                        document.getElementById("providerInput").value = providerName;
                     }
                 })
         } else {
