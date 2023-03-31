@@ -204,7 +204,6 @@ $(document).ready(function () {
         var sortby = $(".sort").val()
         const alphabetical_fields = ["name", "type", "brand", "serial_num", "cost"]
         const sorting_fields = ['alpha', 'reverse_alpha', 'damaged', 'not-damaged']
-        console.log(field)
         if ((sortby == "alpha" || sortby == "reverse-alpha") && alphabetical_fields.indexOf(field) != -1) {
             sort_asce_desc(field, sortby)
         }
@@ -214,6 +213,9 @@ $(document).ready(function () {
         }
         else if (field == "Category"){
             alert("Please select a category to sort by!")
+        }
+        else if (sorting_fields.indexOf(sortby) == -1) {
+            alert("Pleast select a sort by method!")
         }
         else {
             console.log("no")
