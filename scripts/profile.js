@@ -109,41 +109,45 @@ function editUserInfo() {
 
 function saveUserInfo() {
     //enter code here
-
-    console.log("inside")
-
-    //a) get user entered values
-    var userName = document.getElementById("nameInput").value;
-    var userEmail = document.getElementById("emailInput").value;
-    var userCity = document.getElementById("cityInput").value;
-    // get the original email value
-    // var ogEmail = currentUser.get("email");
-    // console.log(ogEmail);
-
-    // check if the user has changed the email address
-    
-    console.log(userName, userEmail, userCity)
-
-    // if (userEmail != ogEmail) {
-    //     alert("You cannot change your email address!");
-    // }
-    
-    //b) update user's document in Firestore
-    currentUser.update({
-        name: userName,
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            console.log("inside")
+            currentUser = db.collection("users").doc(user.uid)
+            //a) get user entered values
+            var userName = document.getElementById("nameInput").value;
+            var userEmail = document.getElementById("emailInput").value;
+            var userCity = document.getElementById("cityInput").value;
+            // get the original email value
+            // var ogEmail = currentUser.get("email");
+            // console.log(ogEmail);
         
-        city: userCity
-
-    })
-    
-    .then(() => {
-        console.log("Document successfully updated!");
+            // check if the user has changed the email address
+            
+            console.log(userName, userEmail, userCity)
         
+            // if (userEmail != ogEmail) {
+            //     alert("You cannot change your email address!");
+            // }
+            
+            //b) update user's document in Firestore
+            currentUser.update({
+                name: userName,
+                
+                city: userCity
+        
+            })
+            
+            .then(() => {
+                console.log("Document successfully updated!");
+                
+            })
+            
+            //c) disable edit 
+            document.getElementById('personalInfoFields').disabled = true;
+            // location.reload();
+
+        }
     })
-    
-    //c) disable edit 
-    document.getElementById('personalInfoFields').disabled = true;
-    // location.reload();
 
 }
 
