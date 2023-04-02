@@ -113,13 +113,13 @@ function displayCardsDynamically(collection) {
 
                 currentUser.get().then(userDoc => {
                     //get the user name
-                    var register = userDoc.data().register;
-                    if (register.includes(docID)) {
+                    var favorite = userDoc.data().favorite;
+                    if (favorite.includes(docID)) {
                        document.getElementById('save-' + docID).innerText = 'favorite';
                     }
                     var registration = userDoc.data().registration;
                     if (registration.includes(docID)) {
-                    document.getElementById('register-' + docID).innerText = 'Register';
+                    document.getElementById('register-' + docID).innerText = 'register';
                     }
                 })
                 

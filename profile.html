@@ -45,7 +45,7 @@
             <form>
                 <fieldset class="mb-3" id="personalInfoFields" disabled>
                     <div class="form-group">
-                        <label >Name</label>
+                        <labellabel >Name</label>
                         <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                     </div>
                     <div class="form-group">
@@ -68,23 +68,26 @@
 
         <div class="container">
             <h1>Provider</h1>
-            <form>
-                <fieldset class="mb-3" id="personalInfoFields" disabled>
-                    <div class="form-group">
-                        <label >Name</label>
-                        <input type="text" id="pnameInput" class="form-control" placeholder="No provider registed yet">
+             <div class="container">
+            <div id="hikeCardGroup" class="row row-cols-auto">
+            </div>
+        </div>
+            <template id="savedCardTemplate">
+                <div class="card py-2 mx-2 bg-black" style="width: 10rem;">
+                    <div class="card-body">
+                        <label>Name</label>
+                        <button class="card-title" readonly></button>
+
+                        <label>Policy Number</label>
+                        <button class="card-length" readonly></button>
+                        <br>
                     </div>
-                    <div class="form-group">
-                        <label >Policy Number</label>
-                        <input type="text" id="plcInput" class="form-control" placeholder="">
-                    </div>
-                    
-                </fieldset>
-                <div class="d-flex justify-content-end mt-5">
-                    <button type="button" class="btn btn-info"><a class="nav-link" href="../provider.html" style="color: black; padding: 0%;">Choose Provider</a></button>
-                    
                 </div>
-            </form>
+         </template>
+         <div class="d-flex justify-content-end mt-5">
+            <button type="button" class="btn btn-primary"><a class="nav-link" href="../provider.html" style="color: black; padding: 0%;">Choose Provider</a></button>
+            
+        </div>
         </div>
 
       
