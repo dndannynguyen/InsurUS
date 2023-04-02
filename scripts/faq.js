@@ -1,5 +1,16 @@
-var currentUser
+function writeQuestion() {
+    // writes the user's question to the database
+    let userEmail = $("#Email").val();
+    let Question = $("#Question").val();
+    db.collection("faq").add({
+        email: userEmail,
+        question: Question,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+        swal("Your question has been recorded and will be answered within 5 business days!")
+    })
 
+<<<<<<< HEAD
 function savefaqDocumentIDAndRedirect(){
     let params = new URL(window.location.href) //get the url from the search bar
     let ID = params.searchParams.get("docID");
@@ -38,3 +49,10 @@ function writeFaq() {
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
+=======
+}
+
+$(document).ready(
+    $("#submitBTN").click(writeQuestion)
+)
+>>>>>>> eba929cbe0bcbf03016e622667e67ba30717a824
