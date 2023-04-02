@@ -4,6 +4,7 @@
 }
 
 body {
+    padding-top: 70px;
     background-color: black;
     color: #9BD7E7;
 }
@@ -22,26 +23,11 @@ main {
 }
 
 .bg-secondary {
-    background-color: #9BD7E7 !important;
+    background-color: #41b0ce !important;
 }
 main {
     padding: 1rem;
     width: 100%;
-}
-.footer_div {
-    text-align: center;
-    color: black;
-    text-decoration: none;
-}
-
-.footer_link {
-    color: rgb(27, 42, 68);
-    text-decoration: none;
-    border: solid;
-    border-left: 0px;
-    border-top: 0px;
-    border-bottom: 0px;
-    padding-left: 4px
 }
 /* index page styles */
 .btn-primary {
@@ -59,6 +45,12 @@ main {
 }
 .jumbotron {
     text-align: center;
+}
+/* main page styles */
+#update_delete {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 /* records page styles */
 #search-record-group {
@@ -117,6 +109,7 @@ input[type=text] {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    padding-bottom: 0.5rem;
 }
 #record-page-header {
     display: flex;

@@ -147,6 +147,38 @@ function saveUserInfo() {
 
 }
 
+function loadTotalRecords() {
+        firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        var size = 0;
+        if (user) {
+            //go to the correct user document by referencing to the user uid
+            currentUser = user.uid
+            //get the document for current user.
+            db.collection("records")
+            .where("userID", "==", currentUser)
+            .onSnapshot(allRecords => {
+                    //get the data fields of the user
+                    records = allRecords.docs;
+                    records.forEach(doc => {
+                        size += 1
+                        $("#countItems").text(size)
+                    }
+                    )
+            })
+        } else {
+            // No user is signed in.
+            console.log ("No user is signed in");
+        }        
+    });
+    
+}
+
+$(document).ready(function () {
+    populateUserInfo();
+    loadTotalRecords()
+    }
+)
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {

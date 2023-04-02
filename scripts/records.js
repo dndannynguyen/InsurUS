@@ -56,11 +56,9 @@ function editRecord(id) {
 }
 
 function deleteRecord(id) {
-    console.log(id)
     deleted = confirm("Are you sure you want to delete this record?")
     if (deleted) {
         db.collection("records").doc(id).delete().then()
-        console.log("Deleted")
     }
 }
 
@@ -208,7 +206,6 @@ $(document).ready(function () {
             sort_asce_desc(field, sortby)
         }
         else if (sortby == "damaged" || sortby == "not-damaged") {
-            console.log("sorting by damage")
             showRecordBasedState(sortby)
         }
         else if (field == "Category"){
@@ -224,7 +221,6 @@ $(document).ready(function () {
     $("#search").click(function () {
         var search_term = $("#search-record-bar").val()
         var field = $("#field").val()
-        console.log(field)
         if (search_term == "") {
             alert("Please enter in search term!")
         }
@@ -244,7 +240,6 @@ $(document).ready(function () {
                     .where(field, "==", search_term)
                     .onSnapshot(allRecords => {
                         records = allRecords.docs;
-                        console.log(records);
                         records.forEach(doc => {
                             
                             var docID = doc.id;
@@ -278,5 +273,15 @@ $(document).ready(function () {
         }
 
     })
-
+    $("#field").click(function () {
+        var value = $("#field").val()
+        if (value == "cost") {
+            $("#asec").html("Low to High")
+            $("#desc").html("High to Low")
+        }
+        else {
+            $("#asec").html("A-Z")
+            $("#desc").html("Z-A")
+        }
+    })
 })
