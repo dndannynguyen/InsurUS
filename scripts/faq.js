@@ -1,15 +1,15 @@
 var currentUser
 
-function saveHikeDocumentIDAndRedirect(){
+function savefaqDocumentIDAndRedirect(){
     let params = new URL(window.location.href) //get the url from the search bar
     let ID = params.searchParams.get("docID");
-    localStorage.setItem('hikeDocID', ID);
+    localStorage.setItem('faqDocID', ID);
     window.location.href = 'FAQ.html';
 }
 
 function writeFaq() {
     console.log("inside write FAQ")
-    let userEmail = document.getElementById("Email").value;
+    let userEmail = document.getElementById("email").value;
     let message = document.getElementById("Message").value;
     console.log(Email, Message);
 
