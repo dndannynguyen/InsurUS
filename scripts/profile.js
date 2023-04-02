@@ -103,11 +103,15 @@ populateUserInfo();
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
- }
+}
 
 
 
 function saveUserInfo() {
+
+    // currentUser = db.collection("users").doc(user.uid)
+
+
     //enter code here
 
     console.log("inside")
@@ -147,38 +151,60 @@ function saveUserInfo() {
 
 }
 
-function loadTotalRecords() {
-        firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
-        var size = 0;
-        if (user) {
-            //go to the correct user document by referencing to the user uid
-            currentUser = user.uid
-            //get the document for current user.
-            db.collection("records")
-            .where("userID", "==", currentUser)
-            .onSnapshot(allRecords => {
-                    //get the data fields of the user
-                    records = allRecords.docs;
-                    records.forEach(doc => {
-                        size += 1
-                        $("#countItems").text(size)
-                    }
-                    )
-            })
-        } else {
-            // No user is signed in.
-            console.log ("No user is signed in");
-        }        
-    });
-    
-}
+// function saveUserInfo() {
 
-$(document).ready(function () {
-    populateUserInfo();
-    loadTotalRecords()
-    }
-)
+//     // get user entered values
+//     var userName = document.getElementById("nameInput").value;
+//     var userEmail = document.getElementById("emailInput").value;
+
+//     // update user's document in Firestore
+//     currentUser.update({
+//         name: userName,
+//         email: userEmail,
+//     })
+//         .then(() => {
+//             console.log("User information is updated");
+//         })
+
+//     // disable edit
+//     document.getElementById('personalInfoFields').disabled = true;
+// }
+
+
+
+
+// function loadTotalRecords() {
+//         firebase.auth().onAuthStateChanged(user => {
+//         // Check if user is signed in:
+//         var size = 0;
+//         if (user) {
+//             //go to the correct user document by referencing to the user uid
+//             currentUser = user.uid
+//             //get the document for current user.
+//             db.collection("records")
+//             .where("userID", "==", currentUser)
+//             .onSnapshot(allRecords => {
+//                     //get the data fields of the user
+//                     records = allRecords.docs;
+//                     records.forEach(doc => {
+//                         size += 1
+//                         $("#countItems").text(size)
+//                     }
+//                     )
+//             })
+//         } else {
+//             // No user is signed in.
+//             console.log ("No user is signed in");
+//         }        
+//     });
+    
+// }
+
+// $(document).ready(function () {
+//     // populateUserInfo();
+//     loadTotalRecords()
+//     }
+// )
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {

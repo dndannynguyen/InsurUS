@@ -113,14 +113,14 @@ function displayCardsDynamically(collection) {
 
                 currentUser.get().then(userDoc => {
                     //get the user name
-                    var favorite = userDoc.data().favorite;
-                    if (favorite.includes(docID)) {
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
                        document.getElementById('save-' + docID).innerText = 'favorite';
                     }
-                    var registration = userDoc.data().registration;
-                    if (registration.includes(docID)) {
-                    document.getElementById('register-' + docID).innerText = 'register';
-                    }
+                    // var registration = userDoc.data().registration;
+                    // if (registration.includes(docID)) {
+                    // document.getElementById('register-' + docID).innerText = 'register';
+                    // }
                 })
                 
 
@@ -167,8 +167,12 @@ function displayCardsDynamically(collection) {
 // }
 
 function saveRegister(providerDocID) {
+    // get the reference to the doc
+    
     currentUser.set({
-            providers: firebase.firestore.FieldValue.arrayUnion(providerDocID)
+
+            providers: firebase.firestore.FieldValue.arrayUnion(providerDocID) 
+
         }, {
             merge: true
         })
@@ -177,7 +181,7 @@ function saveRegister(providerDocID) {
             var iconID = 'register-' + providerDocID;
             //console.log(iconID);
 						//this is to change the icon of the provider that was saved to "filled"
-            document.getElementById(iconID).innerText = 'choseProvider';
+            document.getElementById(iconID).innerText = 'saveProvider';
         });
 }
 
