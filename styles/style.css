@@ -116,6 +116,9 @@ input[type=text] {
     justify-content: space-between;
     align-items: center;
 }
+.swal-button {
+    background-color: #9BD7E7 !important;
+}
 /* adding a record page styles */
 #submit_btn {
     height: 4rem;
