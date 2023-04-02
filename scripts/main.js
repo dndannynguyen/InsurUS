@@ -47,11 +47,11 @@ function displayRecordsDynamically(collection) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             var userID = user.uid;
-            db.collection("records").where("userID", "==", userID)
+            db.collection("records")
+            .where("userID", "==", userID)
             .orderBy("timestamp", "desc")
             .limit(3)
-            .get()   //the collection records"
-                .then(allRecords=> {
+                .onSnapshot(allRecords=> {
                     
                     allRecords.forEach(doc => { //iterate thru each doc
                         var type = doc.data().type;
@@ -68,6 +68,7 @@ function displayRecordsDynamically(collection) {
                         newcard.querySelector('.card-cost').innerHTML = "Cost: " + cost;
                         newcard.querySelector('.card-brand').innerHTML = "Brand: " + brand;
                         newcard.querySelector('a').href = "eachItem.html?docID="+docID;
+                        newcard.querySelector('.delete-record').setAttribute("id", docID)
                         //attach to gallery
                         document.getElementById(collection + "-go-here").appendChild(newcard);
         
@@ -80,10 +81,12 @@ function displayRecordsDynamically(collection) {
 displayRecordsDynamically("records");
   
 function deleteRecord(id) {
-    console.log(id)
-    deleted = confirm("Are you sure you want to delete this record?")
-    if (deleted) {
-        db.collection("records").doc(id).delete().then()
-        console.log("Deleted")
-    }
+    swal("Are you sure you want to delete this record?", {
+        buttons: [true, "Delete"]
+    })
+    $(".swal-button--confirm").click(function () {
+        db.collection("records").doc(id).delete().then(() => {
+                    window.location.href = "main.html"; //new line added
+                })
+    })
 }
