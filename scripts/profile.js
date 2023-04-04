@@ -284,3 +284,28 @@ function getRegister(user) {
             });
         })
 }
+
+
+
+// Delete Register
+
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this provider?")) {
+      deleteRegister();
+    }
+  }
+
+  function deleteRegister() {
+    // Get a reference to the 'providers' subcollection for the current user
+    const providersRef = firebase.firestore().collection('users').doc('userDoc').collection('providers');
+    
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            doc.ref.delete();
+        });
+        console.log('All providers have been deleted');
+    }).catch((error) => {
+        console.error('Error deleting providers: ', error);
+    });
+}

@@ -166,24 +166,62 @@ function displayCardsDynamically(collection) {
 //         });
 // }
 
-function saveRegister(providerDocID) {
-    // get the reference to the doc
+
+
+// // Save only!!!
+// function saveRegister(providerDocID) {
+//     // get the reference to the doc
     
+//     currentUser.set({
+
+//             providers: firebase.firestore.FieldValue.arrayUnion(providerDocID) 
+
+//         }, {
+//             merge: true
+//         })
+//         .then(function () {
+//             console.log("Provider has been saved for: " + currentUser);
+//             var iconID = 'register-' + providerDocID;
+//             //console.log(iconID);
+// 						//this is to change the icon of the provider that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'saveProvider';
+//         });
+// }
+
+
+
+
+
+// Delete and save, make the limit of one
+
+function saveRegister(providerDocID) {
+    // Get a reference to the user's document
+    const userRef = firebase.firestore().collection('users').doc('userDoc');
+  
+    // Get a reference to the 'providers' subcollection for the user
+    const providersRef = userRef.collection('providers');
+  
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        providersRef.doc(doc.id).delete();
+      });
+    });
+    
+    // Add the new provider document to the 'providers' subcollection
     currentUser.set({
+        providers: [providerDocID]
+      }, {
+        merge: true
+      })
+      .then(function() {
+        console.log("Provider has been saved for: " + currentUser);
+        var iconID = 'register-' + providerDocID;
+        document.getElementById(iconID).innerText = 'saveProvider';
+      });
+  }
+  
 
-            providers: firebase.firestore.FieldValue.arrayUnion(providerDocID) 
-
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("Provider has been saved for: " + currentUser);
-            var iconID = 'register-' + providerDocID;
-            //console.log(iconID);
-						//this is to change the icon of the provider that was saved to "filled"
-            document.getElementById(iconID).innerText = 'saveProvider';
-        });
-}
 
 
 
@@ -211,3 +249,40 @@ function saveBookmark(providerDocID) {
             }
         })
 }
+
+
+
+// Delete provider
+
+
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this provider?")) {
+      deleteRegister();
+    
+
+    }
+
+  }
+
+  function deleteRegister() {
+    // Get a reference to the 'providers' subcollection for the current user
+    const userRef = firebase.firestore().collection('users').doc('userDoc');
+  
+    // Get a reference to the 'providers' subcollection for the user
+    const providersRef = userRef.collection('providers');
+  
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        providersRef.doc(doc.id).delete();
+      });
+    });
+
+    currentUser.set({
+        providers: []
+      }, {
+        merge: true
+      }).then(() => {
+        location.reload();
+});
+  }
