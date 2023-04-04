@@ -23,7 +23,12 @@ function addRecordDetails() {
                     serial_num: SerialNum,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
-                    window.location.href = "success.html"; //new line added
+                    swal("Record added successfully!", {
+                        button: "See Records"
+                    })
+                    $(".swal-button--confirm").click(function () {
+                        window.location.href = "records.html";
+                    })
                 })
             })
         } else {
