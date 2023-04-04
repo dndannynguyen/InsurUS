@@ -1,5 +1,5 @@
 function loadSkeleton() {
-
+    // loads the navbar onto the page
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             $('#navbarPlaceholder').load('./text/navafterlogin.html');
@@ -8,4 +8,7 @@ function loadSkeleton() {
         }
     });
 }
-loadSkeleton();
+
+$(document).ready(
+    loadSkeleton()
+)

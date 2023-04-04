@@ -1,4 +1,5 @@
 function showRecords() {
+    // shows all the records on the page
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
@@ -46,16 +47,19 @@ function showRecords() {
 }
 
 function reset_records() {
+    // resets the search applied to the records
     $("#recordCardGroup").empty()
     showRecords()
     $("#search-record-bar").val("")
 }
 
 function editRecord(id) {
+    // redirects to edit page
     window.location.href = "eachItem.html?docID=" + id
 }
 
 function deleteRecord(id) {
+    // deletes the record from firebase
     swal("Are you sure you want to delete this record?", {
         buttons: [true, "Delete"]
     })
@@ -65,6 +69,7 @@ function deleteRecord(id) {
 }
 
 function sort_asce_desc(category, filter_type) {
+    // sorts the records alphabetically or not by category
     $("#recordCardGroup").empty()
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -143,6 +148,7 @@ function sort_asce_desc(category, filter_type) {
 }
 
 function showRecordBasedState(state) {
+    // sorts the records, either damaged or not
     var state_value = "No"
     if (state == "damaged") {
         state_value = "Yes"
@@ -200,6 +206,7 @@ function showRecordBasedState(state) {
 $(document).ready(function () {
     showRecords()
     $("#sort").click(function () {
+        // sorts the items based on the category selected, either alphabetical or damaged or not
         var field = $("#field").val()
         var sortby = $(".sort").val()
         const alphabetical_fields = ["name", "type", "brand", "serial_num", "cost"]
@@ -221,6 +228,7 @@ $(document).ready(function () {
         }
     })
     $("#search").click(function () {
+        // searches for an item based on the user input and the category selected
         var search_term = $("#search-record-bar").val()
         var field = $("#field").val()
         if (search_term == "") {

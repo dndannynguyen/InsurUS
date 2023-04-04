@@ -1,5 +1,5 @@
 function addRecordDetails() {
-    console.log("inside write review")
+    // writes the added record to firebase
     let Name = document.getElementById("item_name").value;
     let Type = document.getElementById("item_type").value;
     let Brand = document.getElementById("item_brand").value;
