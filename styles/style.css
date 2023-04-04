@@ -124,6 +124,11 @@ input[type=text] {
 .swal-button {
     background-color: #41b0ce !important;
 }
+.swal-button--cancel {
+    background-color: #6c757d !important;
+    color: white;
+}
+
 /* adding a record page styles */
 #submit_btn {
     height: 4rem;
