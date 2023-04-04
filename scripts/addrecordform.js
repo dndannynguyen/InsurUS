@@ -1,5 +1,5 @@
 function addRecordDetails() {
-    console.log("inside write review")
+    // writes the added record to firebase
     let Name = document.getElementById("item_name").value;
     let Type = document.getElementById("item_type").value;
     let Brand = document.getElementById("item_brand").value;
@@ -23,7 +23,12 @@ function addRecordDetails() {
                     serial_num: SerialNum,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(() => {
-                    window.location.href = "success.html"; //new line added
+                    swal("Record added successfully!", {
+                        button: "See Records"
+                    })
+                    $(".swal-button--confirm").click(function () {
+                        window.location.href = "records.html";
+                    })
                 })
             })
         } else {

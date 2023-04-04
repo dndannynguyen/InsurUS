@@ -4,7 +4,7 @@
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 75px;
     background-color: black;
     color: #9BD7E7;
 }
@@ -45,6 +45,11 @@ main {
 }
 .jumbotron {
     text-align: center;
+}
+#index-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* main page styles */
 #update_delete {
@@ -117,12 +122,52 @@ input[type=text] {
     align-items: center;
 }
 .swal-button {
-    background-color: #9BD7E7 !important;
+    background-color: #41b0ce !important;
 }
+.swal-button--cancel {
+    background-color: #6c757d !important;
+    color: white;
+}
+
 /* adding a record page styles */
 #submit_btn {
     height: 4rem;
     width: 8rem;
     font-size: 1.5rem;
     border-radius: 10px;
+}
+/* firebase login ui styles */
+.firebaseui-container {
+    background-color: #212529;
+    color: white;
+    width: 90%;
+    border-radius: 10px;
+}
+.firebaseui-card-header {
+    border-bottom: 1px solid #E0F6FC !important;
+}
+.firebaseui-title {
+    color: #9BD7E7;
+}
+.firebaseui-label {
+    color: #9BD7E7 !important;
+
+}
+.firebaseui-link {
+    color: #9BD7E7;
+}
+.firebaseui-button {
+    background-color: #41b0ce !important;
+}
+.firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+    background-color: #41b0ce !important;
+}
+.mdl-button--primary.mdl-button--primary {
+    color: black !important;
+}
+.firebaseui-tos, .firebaseui-text {
+    color: white;
+}
+.firebaseui-input {
+    color: #E0F6FC;
 }

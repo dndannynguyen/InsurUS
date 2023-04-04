@@ -113,14 +113,14 @@ function displayCardsDynamically(collection) {
 
                 currentUser.get().then(userDoc => {
                     //get the user name
-                    var favorite = userDoc.data().favorite;
-                    if (favorite.includes(docID)) {
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
                        document.getElementById('save-' + docID).innerText = 'favorite';
                     }
-                    var registration = userDoc.data().registration;
-                    if (registration.includes(docID)) {
-                    document.getElementById('register-' + docID).innerText = 'register';
-                    }
+                    // var registration = userDoc.data().registration;
+                    // if (registration.includes(docID)) {
+                    // document.getElementById('register-' + docID).innerText = 'register';
+                    // }
                 })
                 
 
@@ -166,20 +166,62 @@ function displayCardsDynamically(collection) {
 //         });
 // }
 
+
+
+// // Save only!!!
+// function saveRegister(providerDocID) {
+//     // get the reference to the doc
+    
+//     currentUser.set({
+
+//             providers: firebase.firestore.FieldValue.arrayUnion(providerDocID) 
+
+//         }, {
+//             merge: true
+//         })
+//         .then(function () {
+//             console.log("Provider has been saved for: " + currentUser);
+//             var iconID = 'register-' + providerDocID;
+//             //console.log(iconID);
+// 						//this is to change the icon of the provider that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'saveProvider';
+//         });
+// }
+
+
+
+
+
+// Delete and save, make the limit of one
+
 function saveRegister(providerDocID) {
+    // Get a reference to the user's document
+    const userRef = firebase.firestore().collection('users').doc('userDoc');
+  
+    // Get a reference to the 'providers' subcollection for the user
+    const providersRef = userRef.collection('providers');
+  
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        providersRef.doc(doc.id).delete();
+      });
+    });
+    
+    // Add the new provider document to the 'providers' subcollection
     currentUser.set({
-            providers: firebase.firestore.FieldValue.arrayUnion(providerDocID)
-        }, {
-            merge: true
-        })
-        .then(function () {
-            console.log("Provider has been saved for: " + currentUser);
-            var iconID = 'register-' + providerDocID;
-            //console.log(iconID);
-						//this is to change the icon of the provider that was saved to "filled"
-            document.getElementById(iconID).innerText = 'choseProvider';
-        });
-}
+        providers: [providerDocID]
+      }, {
+        merge: true
+      })
+      .then(function() {
+        console.log("Provider has been saved for: " + currentUser);
+        var iconID = 'register-' + providerDocID;
+        document.getElementById(iconID).innerText = 'saveProvider';
+      });
+  }
+  
+
 
 
 
@@ -207,3 +249,40 @@ function saveBookmark(providerDocID) {
             }
         })
 }
+
+
+
+// Delete provider
+
+
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this provider?")) {
+      deleteRegister();
+    
+
+    }
+
+  }
+
+  function deleteRegister() {
+    // Get a reference to the 'providers' subcollection for the current user
+    const userRef = firebase.firestore().collection('users').doc('userDoc');
+  
+    // Get a reference to the 'providers' subcollection for the user
+    const providersRef = userRef.collection('providers');
+  
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        providersRef.doc(doc.id).delete();
+      });
+    });
+
+    currentUser.set({
+        providers: []
+      }, {
+        merge: true
+      }).then(() => {
+        location.reload();
+});
+  }

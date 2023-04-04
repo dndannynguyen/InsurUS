@@ -1,9 +1,11 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary">
     <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="../index.html"> -->
-        <button onclick="history.go(-1)"><--</button>
-        <button onclick="history.go(1)">--></button>
-            <img id="nav_logo"src="../images/logo-png.png" height="36">
+        <div class="nav_btns">
+            <button class="btn-secondary" onclick="history.back()"><-</button>
+            <button class="btn-secondary" onclick="history.forward()">-></button>
+        </div>
+        <a class="navbar-brand" href="../index.html">
+            <img id="nav_logo"src="../images/logo-png.png" height="40">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -60,7 +60,7 @@
                 <div class="d-flex justify-content-end mt-5">
                     <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit (Not your Email!)</button>
                     <span style="width: 10px"></span>
-                    <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUserInfo()">Save</button>
                 </div>
             </form>
         </div>
@@ -73,7 +73,7 @@
             </div>
         </div>
             <template id="savedCardTemplate">
-                <div class="card py-2 mx-2 bg-black" style="width: 10rem;">
+                <div class="card py-2 mx-2 bg-black" style="width: 15rem;">
                     <div class="card-body">
                         <label>Name</label>
                         <button class="card-title" readonly></button>
@@ -83,6 +83,8 @@
                         <br>
                     </div>
                 </div>
+                <div class="d-flex justify-content-end mt-5"></div>
+                <button type="button" class="btn btn-primary" ><a class="nav-link" onclick="confirmDelete()" style="color: red; padding: 0%;">Delete Provider</a></button>
          </template>
           <div class="d-flex justify-content-end mt-5">
                     <button type="button" class="btn btn-primary"><a class="nav-link" href="../provider.html" style="color: black; padding: 0%;">Choose Provider</a></button>

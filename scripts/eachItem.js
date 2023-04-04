@@ -49,7 +49,12 @@ function updateItem() {
                 serial_num: SerialNum
             })
             .then(() => {
-                window.location.href = "thanks.html";
+                swal("Record updated successfully!", {
+                    button: "See Records"
+                })
+                $(".swal-button--confirm").click(function () {
+                    window.location.href = "records.html";
+                })
             }) 
 
         } else {

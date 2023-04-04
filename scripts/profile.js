@@ -103,82 +103,112 @@ populateUserInfo();
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;
- }
+}
 
 
 
 function saveUserInfo() {
+
+    // currentUser = db.collection("users").doc(user.uid)
+
+
     //enter code here
-
-    console.log("inside")
-
-    //a) get user entered values
-    var userName = document.getElementById("nameInput").value;
-    var userEmail = document.getElementById("emailInput").value;
-    var userCity = document.getElementById("cityInput").value;
-    // get the original email value
-    // var ogEmail = currentUser.get("email");
-    // console.log(ogEmail);
-
-    // check if the user has changed the email address
-    
-    console.log(userName, userEmail, userCity)
-
-    // if (userEmail != ogEmail) {
-    //     alert("You cannot change your email address!");
-    // }
-    
-    //b) update user's document in Firestore
-    currentUser.update({
-        name: userName,
-        
-        city: userCity
-
-    })
-    
-    .then(() => {
-        console.log("Document successfully updated!");
-        
-    })
-    
-    //c) disable edit 
-    document.getElementById('personalInfoFields').disabled = true;
-    // location.reload();
-
-}
-
-function loadTotalRecords() {
-        firebase.auth().onAuthStateChanged(user => {
-        // Check if user is signed in:
-        var size = 0;
+    firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            //go to the correct user document by referencing to the user uid
-            currentUser = user.uid
-            //get the document for current user.
-            db.collection("records")
-            .where("userID", "==", currentUser)
-            .onSnapshot(allRecords => {
-                    //get the data fields of the user
-                    records = allRecords.docs;
-                    records.forEach(doc => {
-                        size += 1
-                        $("#countItems").text(size)
-                    }
-                    )
+            console.log("inside")
+            currentUser = db.collection("users").doc(user.uid)
+            //a) get user entered values
+            var userName = document.getElementById("nameInput").value;
+            var userEmail = document.getElementById("emailInput").value;
+            var userCity = document.getElementById("cityInput").value;
+            // get the original email value
+            // var ogEmail = currentUser.get("email");
+            // console.log(ogEmail);
+        
+            // check if the user has changed the email address
+            
+            console.log(userName, userEmail, userCity)
+        
+            // if (userEmail != ogEmail) {
+            //     alert("You cannot change your email address!");
+            // }
+            
+            //b) update user's document in Firestore
+            currentUser.update({
+                name: userName,
+                
+                city: userCity
+        
             })
-        } else {
-            // No user is signed in.
-            console.log ("No user is signed in");
-        }        
-    });
-    
+            
+            .then(() => {
+                console.log("Document successfully updated!");
+                
+            })
+            
+            //c) disable edit 
+            document.getElementById('personalInfoFields').disabled = true;
+            // location.reload();
+
+        }
+    })
+
 }
 
-$(document).ready(function () {
-    populateUserInfo();
-    loadTotalRecords()
-    }
-)
+// function saveUserInfo() {
+
+//     // get user entered values
+//     var userName = document.getElementById("nameInput").value;
+//     var userEmail = document.getElementById("emailInput").value;
+
+//     // update user's document in Firestore
+//     currentUser.update({
+//         name: userName,
+//         email: userEmail,
+//     })
+//         .then(() => {
+//             console.log("User information is updated");
+//         })
+
+//     // disable edit
+//     document.getElementById('personalInfoFields').disabled = true;
+// }
+
+
+
+
+// function loadTotalRecords() {
+//         firebase.auth().onAuthStateChanged(user => {
+//         // Check if user is signed in:
+//         var size = 0;
+//         if (user) {
+//             //go to the correct user document by referencing to the user uid
+//             currentUser = user.uid
+//             //get the document for current user.
+//             db.collection("records")
+//             .where("userID", "==", currentUser)
+//             .onSnapshot(allRecords => {
+//                     //get the data fields of the user
+//                     records = allRecords.docs;
+//                     records.forEach(doc => {
+//                         size += 1
+//                         $("#countItems").text(size)
+//                     }
+//                     )
+//             })
+//         } else {
+//             // No user is signed in.
+//             console.log ("No user is signed in");
+//         }        
+//     });
+    
+// }
+
+// $(document).ready(function () {
+//     // populateUserInfo();
+//     loadTotalRecords()
+//     }
+// )
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -253,4 +283,29 @@ function getRegister(user) {
                 })
             });
         })
+}
+
+
+
+// Delete Register
+
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this provider?")) {
+      deleteRegister();
+    }
+  }
+
+  function deleteRegister() {
+    // Get a reference to the 'providers' subcollection for the current user
+    const providersRef = firebase.firestore().collection('users').doc('userDoc').collection('providers');
+    
+    // Delete all documents in the 'providers' subcollection
+    providersRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            doc.ref.delete();
+        });
+        console.log('All providers have been deleted');
+    }).catch((error) => {
+        console.error('Error deleting providers: ', error);
+    });
 }
