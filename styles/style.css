@@ -160,6 +160,9 @@ input[type=text] {
 .mdl-button--primary.mdl-button--primary {
     color: black !important;
 }
-.firebaseui-tos {
+.firebaseui-tos, .firebaseui-text {
     color: white;
+}
+.firebaseui-input {
+    color: #E0F6FC;
 }
