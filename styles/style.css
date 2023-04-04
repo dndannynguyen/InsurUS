@@ -4,7 +4,7 @@
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 75px;
     background-color: black;
     color: #9BD7E7;
 }
@@ -130,4 +130,36 @@ input[type=text] {
     width: 8rem;
     font-size: 1.5rem;
     border-radius: 10px;
+}
+/* firebase login ui styles */
+.firebaseui-container {
+    background-color: #212529;
+    color: white;
+    width: 90%;
+    border-radius: 10px;
+}
+.firebaseui-card-header {
+    border-bottom: 1px solid #E0F6FC !important;
+}
+.firebaseui-title {
+    color: #9BD7E7;
+}
+.firebaseui-label {
+    color: #9BD7E7 !important;
+
+}
+.firebaseui-link {
+    color: #9BD7E7;
+}
+.firebaseui-button {
+    background-color: #41b0ce !important;
+}
+.firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+    background-color: #41b0ce !important;
+}
+.mdl-button--primary.mdl-button--primary {
+    color: black !important;
+}
+.firebaseui-tos {
+    color: white;
 }
