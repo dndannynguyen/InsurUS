@@ -1,4 +1,4 @@
-# Project Title
+# InsurUs
 
 ## 1. Project Description
 State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
@@ -18,8 +18,10 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
 * Google Material Symbols
+* Google Material Icons
 * SweetAlert 3.0
 * JQuery 3.6.4
+* iStock photos
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
@@ -36,9 +38,9 @@ Here are some known bugs:
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+* Image upload for damaged items
+* Recently deleted items collection
+* Partial word searching for the records
 	
 ## 7. Contents of Folder
 Content of the project folder:
