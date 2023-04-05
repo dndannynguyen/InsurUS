@@ -2,16 +2,10 @@ function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            // Do something for the currently logged-in user here: 
-            // console.log(user.uid); //print the uid in the browser console
-            // console.log(user.displayName);  //print the user name in the browser console
-
             currentUser = db.collection("users").doc(user.uid); // will to to the firestore and go to the document of the user
             currentUser.get().then(userDoc=>{
                 //get the user name
                 var userName= userDoc.data().name;
-                // console.log(userName);
-                //$("#name-goes-here").text(userName); //jquery
                 document.getElementById("name-goes-here").innerText=userName;
             })
         } 
@@ -80,59 +74,21 @@ function displayProvidersDynamically(collection) {
                 var details = doc.data().details; // get value of the "details" key
                 var providerCode = doc.data().code; //get unique ID to each provider to be used for fetching right image
                 var rating = doc.data().rating; //gets the rating field
-                var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true);
 
                 //update title and text and image etc.
                 newcard.querySelector('.card-title').innerHTML = title;
-                //newcard.querySelector('.card-length').innerHTML = providerLength + "km";
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${providerCode}.png`; //Example: NV01.jpg
-                newcard.querySelector('a').href = "profile.html?docID=" + docID;
+                newcard.querySelector('a').href = "provider.html";
 
                 //NEW LINE: update to display length, duration, last updated
                 newcard.querySelector('.card-length').innerHTML =
-                    "Rating: " + doc.data().rating + " <br>" +
+                    "Rating: " + rating + " <br>" +
                     "Last updated: " + doc.data().last_updated.toDate().toLocaleDateString();
 
-                //NEW LINES: next 2 lines are new for demo#11
-                //this line sets the id attribute for the <i> tag in the format of "save-hikdID" 
-                //so later we know which provider to bookmark based on which provider was clicked
-                newcard.querySelector('i').id = 'save-' + docID;
-                // this line will call a function to save the providers to the user's document             
-                newcard.querySelector('i').onclick = () => saveBookmark(docID);
-
-
-                newcard.querySelector('b').id = 'register-' + docID;
-                                // this line will call a function to save the providers to the user's document             
-                newcard.querySelector('b').onclick = () => saveRegister(docID);
-
-
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                       document.getElementById('save-' + docID).innerText = 'favorite';
-                    }
-                    // var registration = userDoc.data().registration;
-                    // if (registration.includes(docID)) {
-                    // document.getElementById('register-' + docID).innerText = 'register';
-                    // }
-                })
-                
-
-                
-                // currentUser.get().then(userDoc => {
-                //     //get the user name
-                   
-                // })
-
-
-                //Finally done modifying newcard
-                //attach to gallery, Example: "providers-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
 
-                //i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 }
