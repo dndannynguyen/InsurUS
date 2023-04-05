@@ -30,6 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <!-- Link to styles of your own -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -65,7 +66,7 @@
             </form>
         </div>
 
-
+        <br>
         <div class="container">
             <h1>Provider</h1>
              <div class="container">
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-5"></div>
-                <button type="button" class="btn btn-primary" ><a class="nav-link" onclick="confirmDelete()" style="color: red; padding: 0%;">Delete Provider</a></button>
+                <button type="button" class="btn btn-danger" ><a class="nav-link" onclick="confirmDelete()" style="color: white; padding: 0%;">Delete Provider</a></button>
          </template>
           <div class="d-flex justify-content-end mt-5">
                     <button type="button" class="btn btn-primary"><a class="nav-link" href="../provider.html" style="color: black; padding: 0%;">Choose Provider</a></button>
@@ -100,8 +101,7 @@
             <p><b>Email Address: </b><span id="userEmail"></span>#user@user.com</p> -->
 
             <h3>Records</h3>
-            <p><span id="countItems">3</span> items added</p>
-            <p>Last update <span id="lastUpdate">3 days ago</span></p>
+            <p><span id="countItems">0</span> items added</p>
             <p><button class="btn-primary" onclick="location.href='records.html'">View Records Details</button></p>
 
         </div>
