@@ -6,15 +6,15 @@ function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             currentUser = db.collection("users").doc(user.uid); //global
-            console.log(currentUser);
+            // console.log(currentUser);
 
             // figure out what day of the week it is today
-            const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-            const d = new Date();
-            let day = weekday[d.getDay()];
+            // const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+            // const d = new Date();
+            // let day = weekday[d.getDay()];
 
             // the following functions are always called when someone is logged in
-            insertNameFromFirestore();
+            // insertNameFromFirestore();
             displayCardsDynamically("providers");
         } else {
             // No user is signed in.
@@ -36,20 +36,6 @@ function readQuote( day ) {
 // Comment out the next line (we will call this function from doAll())
 // readQuote("tuesday");       
 
-
-
-// Insert name function using the global variable "currentUser".
-function insertNameFromFirestore() {
-    currentUser.get().then(userDoc => {
-        //get the user name
-        var user_Name = userDoc.data().name;
-        console.log(user_Name);
-        $("#name-goes-here").text(user_Name); //jquery
-        // document.getElementByID("name-goes-here").innetText=user_Name;
-    })
-}
-// Comment out the next line (we will call this function from doAll())
-// insertNameFromFirestore();
 
 // //-----------------------------------------------
 // // Create a "max" number of provider document objects
@@ -148,7 +134,7 @@ function saveRegister(providerDocID) {
       });
     });
     
-    // Add the new provider document to the 'providers' subcollection
+    // Add the new provider document to the 'providers' subcollection.
     currentUser.set({
         providers: [providerDocID]
       }, {
@@ -191,26 +177,23 @@ function saveBookmark(providerDocID) {
 
 
 
-// Delete provider that was picked to show on the profile page.
+
+//Alert to make sure user want to delete.
 function confirmDelete() {
     if (confirm("Are you sure you want to delete this provider?")) {
       deleteRegister();
-    }
-}
+    
 
+    }
+
+  }
+
+
+// Delete the registed provider.
 function deleteRegister() {
     // Get a reference to the 'providers' subcollection for the current user
     const userRef = firebase.firestore().collection('users').doc('userDoc');
-  
-    // Get a reference to the 'providers' subcollection for the user
-    const providersRef = userRef.collection('providers');
-  
-    // Delete all documents in the 'providers' subcollection
-    providersRef.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        providersRef.doc(doc.id).delete();
-      });
-    });
+
 
     currentUser.set({
         providers: []
@@ -218,5 +201,5 @@ function deleteRegister() {
         merge: true
       }).then(() => {
         location.reload();
-    });
-}
+});
+  }

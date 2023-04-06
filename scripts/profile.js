@@ -93,12 +93,44 @@ function saveUserInfo() {
 }
 
 
+// Count the total number of records user has in the record page.
+function loadTotalRecords() {
+        firebase.auth().onAuthStateChanged(user => {
+        // Check if user is signed in:
+        var size = 0;
+        if (user) {
+            //go to the correct user document by referencing to the user uid
+            currentUser = user.uid
+            //get the document for current user.
+            db.collection("records")
+            .where("userID", "==", currentUser)
+            .onSnapshot(allRecords => {
+                    //get the data fields of the user
+                    records = allRecords.docs;
+                    records.forEach(doc => {
+                        size += 1
+                        $("#countItems").text(size)
+                    }
+                    )
+            })
+        } else {
+            // No user is signed in.
+            console.log ("No user is signed in");
+        }        
+    });
+    
+}
+loadTotalRecords()
 
-//Execute the insertNameFromFirestore() and getRegister(user).
+// $(document).ready(function () {
+//     // populateUserInfo();
+//     loadTotalRecords()
+//     }
+// )
 function doAll() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            insertNameFromFirestore();
+            // insertNameFromFirestore();
             getRegister(user)
         } else {
             console.log("No user is signed in");
@@ -114,24 +146,20 @@ doAll();
 // Let's do it!  (Thinking ahead:  This function can be carved out, 
 // and put into script.js for other pages to use as well).
 //----------------------------------------------------------//----------------------------------------------------------
-
-
-
-//Get data from firestore and show the name.
-function insertNameFromFirestore() {
-    //check if user is logged in
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) { //if user logged in
-            console.log(user.uid)
-            db.collection("users").doc(user.uid).get().then(userDoc => {
-                console.log(userDoc.data().name)
-                userName = userDoc.data().name;
-                console.log(userName)
-                document.getElementById("name-goes-here").innerHTML = userName;
-            })
-        }
-    })
-}
+// function insertNameFromFirestore() {
+//     //check if user is logged in
+//     firebase.auth().onAuthStateChanged(user => {
+//         if (user) { //if user logged in
+//             // console.log(user.uid)
+//             db.collection("users").doc(user.uid).get().then(userDoc => {
+//                 // console.log(userDoc.data().name)
+//                 userName = userDoc.data().name;
+//                 // console.log(userName)
+//                 document.getElementById("name-goes-here").innerHTML = userName;
+//             })
+//         }
+//     })
+// }
 
 //----------------------------------------------------------
 // This function takes input param User's Firestore document pointer
@@ -148,7 +176,7 @@ function getRegister(user) {
 
 					  // Get the Array of bookmarks
             var providers = userDoc.data().providers;
-            console.log(providers);
+            // console.log(providers);
 						
 						// Get pointer the new card template
             let newcardTemplate = document.getElementById("savedCardTemplate");
@@ -185,22 +213,41 @@ function getRegister(user) {
 
 // Delete Registered provider.
 function confirmDelete() {
-    if (confirm("Are you sure you want to delete this provider?")) {
-      deleteRegister();
-    }
-  }
+    // if (confirm("Are you sure you want to delete this provider?")) {
+    //   deleteRegister();
+    // }
+    // console.log("delete")
+    swal("Are you sure you want to delete this provider?", {
+        buttons: [true, "Delete"]
+    })
+    $(".swal-button--confirm").click(function () {
+        deleteRegister()
+    })
 
-  function deleteRegister() {
+}
+
+
+
+//Delete registered provider.
+function deleteRegister() {
     // Get a reference to the 'providers' subcollection for the current user
-    const providersRef = firebase.firestore().collection('users').doc('userDoc').collection('providers');
-    
+    const userRef = firebase.firestore().collection('users').doc('userDoc');
+  
+    // Get a reference to the 'providers' subcollection for the user
+    const providersRef = userRef.collection('providers');
+  
     // Delete all documents in the 'providers' subcollection
     providersRef.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            doc.ref.delete();
-        });
-        console.log('All providers have been deleted');
-    }).catch((error) => {
-        console.error('Error deleting providers: ', error);
+      querySnapshot.forEach((doc) => {
+        providersRef.doc(doc.id).delete();
+      });
+    });
+
+    currentUser.set({
+        providers: []
+      }, {
+        merge: true
+      }).then(() => {
+        location.reload();
     });
 }
