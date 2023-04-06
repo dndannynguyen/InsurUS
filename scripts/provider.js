@@ -38,7 +38,7 @@ function readQuote( day ) {
 
 
 
-// Insert name function using the global variable "currentUser"
+// Insert name function using the global variable "currentUser".
 function insertNameFromFirestore() {
     currentUser.get().then(userDoc => {
         //get the user name
@@ -54,6 +54,9 @@ function insertNameFromFirestore() {
 // //-----------------------------------------------
 // // Create a "max" number of provider document objects
 // //-----------------------------------------------
+
+
+//Generate different providers to firebase.
 function writeProviderLoop(max) {
     //define a variable for the collection you want to create in Firestore to populate data
     var providersRef = db.collection("providers");
@@ -70,6 +73,7 @@ function writeProviderLoop(max) {
 }
 
 
+//Display the provider information in each card, and generate it for all providers.
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("providerCardTemplate");
 
@@ -105,9 +109,8 @@ function displayCardsDynamically(collection) {
                 // this line will call a function to save the providers to the user's document             
                 newcard.querySelector('i').onclick = () => saveBookmark(docID);
 
-
                 newcard.querySelector('b').id = 'register-' + docID;
-                                // this line will call a function to save the providers to the user's document             
+                 // this line will call a function to save the providers to the user's document             
                 newcard.querySelector('b').onclick = () => saveRegister(docID);
 
 
@@ -117,19 +120,7 @@ function displayCardsDynamically(collection) {
                     if (bookmarks.includes(docID)) {
                        document.getElementById('save-' + docID).innerText = 'favorite';
                     }
-                    // var registration = userDoc.data().registration;
-                    // if (registration.includes(docID)) {
-                    // document.getElementById('register-' + docID).innerText = 'register';
-                    // }
                 })
-                
-
-                
-                // currentUser.get().then(userDoc => {
-                //     //get the user name
-                   
-                // })
-
 
                 //Finally done modifying newcard
                 //attach to gallery, Example: "providers-go-here"
@@ -140,60 +131,9 @@ function displayCardsDynamically(collection) {
         })
 }
 
-// displayCardsDynamically("providers");  //input param is the name of the collection
-
-// insertName(); //run the function
-// readQuote("tuesday");        //calling the function
-// writeproviders();
-
-//-----------------------------------------------------------------------------
-// This function is called whenever the user clicks on the "bookmark" icon.
-// It adds the provider to the "bookmarks" array
-// Then it will change the bookmark icon from the hollow to the solid version. 
-//-----------------------------------------------------------------------------
-// function saveBookmark(providerDocID) {
-//     currentUser.set({
-//             bookmarks: firebase.firestore.FieldValue.arrayUnion(providerDocID)
-//         }, {
-//             merge: true
-//         })
-//         .then(function () {
-//             console.log("bookmark has been saved for: " + currentUser);
-//             var iconID = 'save-' + providerDocID;
-//             //console.log(iconID);
-// 						//this is to change the icon of the provider that was saved to "filled"
-//             document.getElementById(iconID).innerText = 'bookmark';
-//         });
-// }
 
 
-
-// // Save only!!!
-// function saveRegister(providerDocID) {
-//     // get the reference to the doc
-    
-//     currentUser.set({
-
-//             providers: firebase.firestore.FieldValue.arrayUnion(providerDocID) 
-
-//         }, {
-//             merge: true
-//         })
-//         .then(function () {
-//             console.log("Provider has been saved for: " + currentUser);
-//             var iconID = 'register-' + providerDocID;
-//             //console.log(iconID);
-// 						//this is to change the icon of the provider that was saved to "filled"
-//             document.getElementById(iconID).innerText = 'saveProvider';
-//         });
-// }
-
-
-
-
-
-// Delete and save, make the limit of one
-
+// Register a provider and show it on the profile page. Before that, remove the previous provider.
 function saveRegister(providerDocID) {
     // Get a reference to the user's document
     const userRef = firebase.firestore().collection('users').doc('userDoc');
@@ -219,12 +159,11 @@ function saveRegister(providerDocID) {
         var iconID = 'register-' + providerDocID;
         document.getElementById(iconID).innerText = 'saveProvider';
       });
-  }
-  
+}
 
 
 
-
+// Save the favorite icon for each provider.
 function saveBookmark(providerDocID) {
     currentUser.get()
         .then(function(doc) {
@@ -252,19 +191,14 @@ function saveBookmark(providerDocID) {
 
 
 
-// Delete provider
-
-
+// Delete provider that was picked to show on the profile page.
 function confirmDelete() {
     if (confirm("Are you sure you want to delete this provider?")) {
       deleteRegister();
-    
-
     }
+}
 
-  }
-
-  function deleteRegister() {
+function deleteRegister() {
     // Get a reference to the 'providers' subcollection for the current user
     const userRef = firebase.firestore().collection('users').doc('userDoc');
   
@@ -284,5 +218,5 @@ function confirmDelete() {
         merge: true
       }).then(() => {
         location.reload();
-});
-  }
+    });
+}
