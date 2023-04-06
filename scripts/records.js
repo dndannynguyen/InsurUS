@@ -17,20 +17,20 @@ function showRecords() {
                     records = allRecords.docs;
                     records.forEach(doc => {
                         var docID = doc.id
-                        var name = doc.data().name; //gets the name field
-                        var type = doc.data().type; //gets the unique ID field
+                        var name = doc.data().name; 
+                        var type = doc.data().type; 
                         var brand = doc.data().brand;
-                        var cost = doc.data().cost; //gets the length field
+                        var cost = doc.data().cost; 
                         var damage = doc.data().damaged
                         var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
 
                         let recordCard = recordTemplate.content.cloneNode(true);
-                        recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#item_name').innerHTML = name;   
+                        recordCard.querySelector('#date_added').innerHTML = time;   
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
-                        recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_cost').innerHTML = cost;  
                         recordCard.querySelector('#item_status').innerHTML = damage
                         recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
@@ -46,7 +46,7 @@ function showRecords() {
 
 }
 
-function reset_records() {
+function resetRecords() {
     // resets the search applied to the records
     $("#recordCardGroup").empty()
     showRecords()
@@ -87,20 +87,20 @@ function sort_asce_desc(category, filter_type) {
                     records = allRecords.docs;
                     records.forEach(doc => {
                         var docID = doc.id
-                        var name = doc.data().name; //gets the name field
-                        var type = doc.data().type; //gets the unique ID field
+                        var name = doc.data().name; 
+                        var type = doc.data().type; 
                         var brand = doc.data().brand;
-                        var cost = doc.data().cost; //gets the length field
+                        var cost = doc.data().cost;
                         var damage = doc.data().damaged
                         var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
                         
                         let recordCard = recordTemplate.content.cloneNode(true);
-                        recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#item_name').innerHTML = name;     
+                        recordCard.querySelector('#date_added').innerHTML = time;    
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
-                        recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_cost').innerHTML = cost; 
                         recordCard.querySelector('#item_status').innerHTML = damage
                         recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
@@ -118,20 +118,20 @@ function sort_asce_desc(category, filter_type) {
                     records = allRecords.docs;
                     records.forEach(doc => {
                         var docID = doc.id
-                        var name = doc.data().name; //gets the name field
-                        var type = doc.data().type; //gets the unique ID field
+                        var name = doc.data().name; 
+                        var type = doc.data().type; 
                         var brand = doc.data().brand;
-                        var cost = doc.data().cost; //gets the length field
+                        var cost = doc.data().cost; 
                         var damage = doc.data().damaged
                         var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
                         
                         let recordCard = recordTemplate.content.cloneNode(true);
-                        recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#item_name').innerHTML = name;     
+                        recordCard.querySelector('#date_added').innerHTML = time;    
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
-                        recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_cost').innerHTML = cost;  
                         recordCard.querySelector('#item_status').innerHTML = damage
                         recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
@@ -147,7 +147,7 @@ function sort_asce_desc(category, filter_type) {
     });    
 }
 
-function showRecordBasedState(state) {
+function showRecordBasedOnState(state) {
     // sorts the records, either damaged or not
     var state_value = "No"
     if (state == "damaged") {
@@ -173,20 +173,20 @@ function showRecordBasedState(state) {
                     records = allRecords.docs;
                     records.forEach(doc => {
                         var docID = doc.id
-                        var name = doc.data().name; //gets the name field
-                        var type = doc.data().type; //gets the unique ID field
+                        var name = doc.data().name; 
+                        var type = doc.data().type;
                         var brand = doc.data().brand;
-                        var cost = doc.data().cost; //gets the length field
+                        var cost = doc.data().cost;
                         var damage = doc.data().damaged
                         var serial_num = doc.data().serial_num
                         var time = doc.data().timestamp.toDate().toDateString();
 
                         let recordCard = recordTemplate.content.cloneNode(true);
-                        recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                        recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                        recordCard.querySelector('#item_name').innerHTML = name;     
+                        recordCard.querySelector('#date_added').innerHTML = time;  
                         recordCard.querySelector('#item_type').innerHTML = type;
                         recordCard.querySelector('#item_brand').innerHTML = brand;
-                        recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                        recordCard.querySelector('#item_cost').innerHTML = cost; 
                         recordCard.querySelector('#item_status').innerHTML = damage
                         recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                         recordCard.querySelector('.edit-record').setAttribute("id", docID)
@@ -215,7 +215,7 @@ $(document).ready(function () {
             sort_asce_desc(field, sortby)
         }
         else if (sortby == "damaged" || sortby == "not-damaged") {
-            showRecordBasedState(sortby)
+            showRecordBasedOnState(sortby)
         }
         else if (field == "Category"){
             swal("Please select a category to sort by!")
@@ -253,20 +253,20 @@ $(document).ready(function () {
                         records.forEach(doc => {
                             
                             var docID = doc.id;
-                            var name = doc.data().name; //gets the name field
-                            var type = doc.data().type; //gets the unique ID field
+                            var name = doc.data().name; 
+                            var type = doc.data().type; 
                             var brand = doc.data().brand;
-                            var cost = doc.data().cost; //gets the length field
+                            var cost = doc.data().cost; 
                             var damage = doc.data().damaged
                             var serial_num = doc.data().serial_num
                             var time = doc.data().timestamp.toDate().toDateString();
                             
                             let recordCard = recordTemplate.content.cloneNode(true);
-                            recordCard.querySelector('#item_name').innerHTML = name;     //equiv getElementByClassName
-                            recordCard.querySelector('#date_added').innerHTML = time;    //equiv getElementByClassName
+                            recordCard.querySelector('#item_name').innerHTML = name;    
+                            recordCard.querySelector('#date_added').innerHTML = time;   
                             recordCard.querySelector('#item_type').innerHTML = type;
                             recordCard.querySelector('#item_brand').innerHTML = brand;
-                            recordCard.querySelector('#item_cost').innerHTML = cost;  //equiv getElementByClassName
+                            recordCard.querySelector('#item_cost').innerHTML = cost; 
                             recordCard.querySelector('#item_status').innerHTML = damage
                             recordCard.querySelector('#item_serial_num').innerHTML = serial_num
                             recordCard.querySelector('.edit-record').setAttribute("id", docID)
@@ -284,6 +284,7 @@ $(document).ready(function () {
 
     })
     $("#field").click(function () {
+        // changes the sorting method based on category selected
         var value = $("#field").val()
         if (value == "cost") {
             $("#asec").html("Low to High")
