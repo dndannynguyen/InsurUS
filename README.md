@@ -1,8 +1,7 @@
 # InsurUs- 1800-2023-DTC06
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+Our app InsurUs lets users save information about their valubles for future insurance claims! 
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
