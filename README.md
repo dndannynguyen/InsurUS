@@ -1,4 +1,7 @@
-# InsurUs- 1800-2023-DTC06
+# InsurUs - Save Your Insurance Record
+
+![image](https://github.com/user-attachments/assets/f65b9335-bd04-4862-a7b3-e721d4b9cbe1)
+
 
 ## 1. Project Description
 Our app InsurUs lets users save information about their valubles for future insurance claims! 
@@ -27,6 +30,31 @@ State what a user needs to do when they come to your project.  How do others sta
 Here are the steps ...
 * No need to download anything, just click this link!
 * https://comp1800-2023-project-dtn06.web.app/
+
+_ Register and Login
+
+![image](https://github.com/user-attachments/assets/9205e075-6681-48e4-b85a-8544c32b48c7)
+
+
+_ Edit User Information
+
+_ View Insurance Provider
+
+![image](https://github.com/user-attachments/assets/4b8784a3-e19f-4003-b899-c5fd5916939b)
+
+_ Like and Save favorite provider and register
+
+![image](https://github.com/user-attachments/assets/1a77354f-13c1-4906-b950-664061d5792d)
+
+_ See uploaded record information
+
+_ Update record information
+
+_ Search, Filter, and Sort Records Information
+
+![image](https://github.com/user-attachments/assets/299799eb-d936-4db9-8f28-9c6b3bb4e985)
+
+
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs and limitations:
